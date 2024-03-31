@@ -66,9 +66,12 @@ End Object
 The heuristic function guides the search, helping the algorithm to find a good path faster. It tells an estimation of the cost from a tile to the target tile. 
 
 
-!> If the weight function overestimates the cost of a tile relatively to another tile, the algorithm can return non-optimal paths.
+!> **Note:** If the heuristic function overestimates the cost of a tile relatively to another tile, the algorithm can return non-optimal paths.
 
-In the following code, we use a constant heuristic function, which is the same as not using one. Doing so guarantees the path found is optimal.
+?> **Important:** the cost of the algorithm can quickly explode if you use a constant heuristic or don't use a heuristic function on a large hexasphere.
+
+### 1. Constant Heuristic Function
+In the following code, we use a constant heuristic function, which is the same as not using one. Doing so guarantees the path found is optimal, but the algorithm will explore a lot of tiles, as it doesn't know in which direction is should progress.
 
 <div class="code-switcher show-cpp-false">
 <div class="switcher" >
@@ -115,6 +118,79 @@ End Object
 </div>
 </div>
 </div>
+
+
+### 2. Distance-Based Heuristic Function
+
+The following Heuristic Function uses the distance between the two tiles. It will make the algorithm first try the tiles that are closer to the target tile instead of exploring all tiles blindly.
+
+<div class="code-switcher show-cpp-false">
+<div class="switcher" >
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+
+```cpp
+// C++ example code not available yet.
+```
+
+</div>
+<div class="bp">
+<div class="bpcode">
+<textarea readonly>
+Begin Object Class=/Script/BlueprintGraph.K2Node_FunctionEntry Name="K2Node_FunctionEntry_0" ExportPath="/Script/BlueprintGraph.K2Node_FunctionEntry'/Game/Test.Test:MyHeuristicFunction.K2Node_FunctionEntry_0'"
+   ExtraFlags=201457664
+   FunctionReference=(MemberName="MyHeuristicFunction")
+   bIsEditable=True
+   NodePosX=-336
+   NodePosY=-32
+   NodeGuid=1EEE423C4CD7AF0819407F9AD8742A3E
+   CustomProperties Pin (PinId=7C99126645ED93644D0794A3FA4B0B53,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_FunctionResult_0 80AD53BD42EBED2D5076B69DD0FAB55B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=759EBE90461D6978BA90499F6F2B44E7,PinName="TileIndex",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4E9C90954FD20ABDCDFC4786CD013940,PinName="Tile",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject="/Script/CoreUObject.ScriptStruct'/Script/HexaSphereLib.HexaTile'",PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_1 AB382EB24CBD34418CE94E860F0F50D8,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=81C5E3924ED1722818B060B75EFCF60F,PinName="TargetTileIndex",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FFD441F84AB853B852B8148F71ABF1AF,PinName="TargetTile",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject="/Script/CoreUObject.ScriptStruct'/Script/HexaSphereLib.HexaTile'",PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_1 87527021404E1A222005929B65CECEE3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties UserDefinedPin (PinName="TileIndex",PinType=(PinCategory="int",bIsConst=True),DesiredPinDirection=EGPD_Output)
+   CustomProperties UserDefinedPin (PinName="Tile",PinType=(PinCategory="struct",PinSubCategoryObject="/Script/CoreUObject.ScriptStruct'/Script/HexaSphereLib.HexaTile'",bIsReference=True,bIsConst=True),DesiredPinDirection=EGPD_Output)
+   CustomProperties UserDefinedPin (PinName="TargetTileIndex",PinType=(PinCategory="int",bIsConst=True),DesiredPinDirection=EGPD_Output)
+   CustomProperties UserDefinedPin (PinName="TargetTile",PinType=(PinCategory="struct",PinSubCategoryObject="/Script/CoreUObject.ScriptStruct'/Script/HexaSphereLib.HexaTile'",bIsReference=True,bIsConst=True),DesiredPinDirection=EGPD_Output)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_FunctionResult Name="K2Node_FunctionResult_0" ExportPath="/Script/BlueprintGraph.K2Node_FunctionResult'/Game/Test.Test:MyHeuristicFunction.K2Node_FunctionResult_0'"
+   FunctionReference=(MemberName="MyHeuristicFunction")
+   bIsEditable=True
+   NodePosX=144
+   NodePosY=-32
+   NodeGuid=77D403FB483C3C2816CB23AA8C289A93
+   CustomProperties Pin (PinId=80AD53BD42EBED2D5076B69DD0FAB55B,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_FunctionEntry_0 7C99126645ED93644D0794A3FA4B0B53,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9DBD3B7C46D37043491EB48E35C5BC87,PinName="ReturnValue",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.0",AutogeneratedDefaultValue="0.0",LinkedTo=(K2Node_CallFunction_1 927771464B52523F90B3B49588259F24,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties UserDefinedPin (PinName="ReturnValue",PinType=(PinCategory="real",PinSubCategory="float"),DesiredPinDirection=EGPD_Input,PinDefaultValue="0.0")
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_1" ExportPath="/Script/BlueprintGraph.K2Node_CallFunction'/Game/Test.Test:MyHeuristicFunction.K2Node_CallFunction_1'"
+   bIsPureFunc=True
+   FunctionReference=(MemberParent="/Script/CoreUObject.Class'/Script/HexaSphereLib.HexaSphereBlueprintLib'",MemberName="SquaredDistanceTo")
+   NodePosX=-96
+   NodePosY=48
+   NodeGuid=0BD73EBB4A3B768597283EB07E509889
+   CustomProperties Pin (PinId=F9C90EA44D1A642405EEAD80C7154957,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject="/Script/CoreUObject.Class'/Script/HexaSphereLib.HexaSphereBlueprintLib'",PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AB382EB24CBD34418CE94E860F0F50D8,PinName="From",PinToolTip="From\nHexa Tile Structure (by ref)\n\nthe first tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject="/Script/CoreUObject.ScriptStruct'/Script/HexaSphereLib.HexaTile'",PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_FunctionEntry_0 4E9C90954FD20ABDCDFC4786CD013940,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=87527021404E1A222005929B65CECEE3,PinName="To",PinToolTip="To\nHexa Tile Structure (by ref)\n\nthe second tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject="/Script/CoreUObject.ScriptStruct'/Script/HexaSphereLib.HexaTile'",PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_FunctionEntry_0 FFD441F84AB853B852B8148F71ABF1AF,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=927771464B52523F90B3B49588259F24,PinName="ReturnValue",PinFriendlyName="Distance",PinToolTip="Distance\nFloat (single-precision)\n\nThe distance between the tiles.",Direction="EGPD_Output",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.0",AutogeneratedDefaultValue="0.0",LinkedTo=(K2Node_FunctionResult_0 9DBD3B7C46D37043491EB48E35C5BC87,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/DistanceHeuristic.png"/>
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+
+### 3. Heuristic Function Performance Comparison
+
+Performance for asynchronous A* for path finding on a Hexasphere of type `{ Divisions=50, Tiles=25002 }`, avoiding high tiles:
+
+1. **Constant-Based**: Found a path in `0.58612s` with `10085` iterations.
+2. **Distance-Based**: Found a path in `0.00085s` with `263` iterations.
+
+?> **Important:** test your heuristic for best performance. A* running time can be found in the logs.
 
 ## Running A*
 
