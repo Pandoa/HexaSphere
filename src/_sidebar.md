@@ -9,6 +9,6 @@
   - [Path Finding](/pathfinding)
 
 - Support
-  - [Troubleshoting](/troubleshoting)
+  - [Troubleshooting](/troubleshoting)
   - [Contact](/support)
 
