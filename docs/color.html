@@ -1,0 +1,899 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Color | HexaSphere Library</title>
+    <link rel="icon" href="_media/favicon.webp">
+    <meta name="keywords" content="doc,docs,documentation,gitbook,HexaSphere,features,unreal,engine">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Documentation for the HexaSphere plugin available on the Unreal Engine Marketplace.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dark.css">
+  <link rel="icon" href="favicon.png">
+  <meta property="og:title" content="HexaSphereLib Documentation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pandoa.github.io/HexaSphere/">
+  <style>
+	:root {--theme-color: #70a2ff }
+	html, body, .content {background: #121212}
+	.markdown-section a {color:#00ff80;font-weight:400;}
+	.sidebar {background-color: #242424}
+	textarea {display:none}
+	.sidebar a.section-link {font-size: 0.8em}
+	.app-sub-sidebar li > a.section-link {color:var(--theme-color)}
+	.app-sub-sidebar li {margin:0}
+	.markdown-section code {color: var(--theme-color);}
+	.markdown-section h3 { margin: 20px 0 0 }
+	.markdown-section p.tip {border-left: 4px solid var(--theme-color);color:#bbb;border-radius:6px}
+	.markdown-section p.tip:before {background: var(--theme-color)}
+	.markdown-section p.tip code {color: var(--theme-color); background-color: #333}
+	.markdown-section blockquote p {padding: 10px;color:white;}
+	.markdown-section blockquote {background: linear-gradient(0.21turn, #333, #222, #2a2a2a);
+		border-radius:4px;box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)}
+	.markdown-section pre {border-radius:12px}
+	.markdown-section pre>code {color: #ddd;line-height:18px}
+	.markdown-section p.tip, .markdown-section tr:nth-child(2n) {background:#222}
+	.markdown-section p.warn {border: 1px solid #bF7F7F; color:white;border-radius:6px}
+	.markdown-section td, .markdown-section th {border:1px solid #555}
+	.token.class-name {color: #70d997}
+	.token.function {color: #efefbf}
+	.token.keyword {color: #569cd6}
+	.token.comment {color: #aaa}
+	.token.punctuation{color: #999}
+	.token.attr-name {color: #4993e7 }
+	.token.tag { color: #a8caff }
+	.token.string {color: magenta}
+	.sidebar ul>li>a {color: #888}
+	.token.punctuation.annotation {color: #666}
+	.sidebar-toggle {width: 300px; background: #555;transition: width 0.2s linear}
+	.sidebar-nav > ul > li > ul > li  {margin:0}
+	.token.attr-value, .token.control, .token.unit { color:magenta }
+	.token.directive { color: #ADC8D6 }
+	body.close .sidebar-toggle {width: 36px}
+	h4 {margin-block-end: 0.33em;margin-block-start: 0.66em}
+	h5 {margin-block-start: 1em;margin-block-end: 0}
+	.markdown-section h5{font-size:1.1rem}
+	thead{background: #333}
+	.anchor span {font-weight:600}
+	/* width */
+    ::-webkit-scrollbar {
+      width: 6px;
+	  height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #777;
+	  border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+	::marker {color: #999;font-weight:100}
+	@media screen and (max-width: 768px) {
+		.sidebar-toggle {width:auto}
+	}
+	
+	.cpp > pre,
+	img {
+		border-radius:16px;
+		box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+		border: 1px solid black;
+	}
+	
+	.switcher,
+	img, .sidebar {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
+	
+	.bpcode {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.bpcode > button {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		
+		border: 1px solid white; 
+		background: rgba(18,18,18, 0.1);
+		color:white;
+		padding:10px 20px;
+		border-radius:5px;
+		cursor:pointer;
+		
+		width: 150px;
+		height: 40px;
+		position: relative;
+		top: -40px;		
+		
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, background 0.2s ease-in-out;
+	}
+	
+	.bpcode:hover > button {
+		opacity: 0.7;
+		top: -60px;
+	}
+	
+	.bpcode:hover > button:hover {
+		background: rgba(255, 255, 255, 0.05)
+	}
+	
+	.bpcode:hover > button:active {
+		background: rgba(255, 255, 255, 0.1)
+	}
+	
+	.adblock-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bF7F7F; 
+		color:white;
+		background: #281b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+		
+		display: none;
+	}
+	
+	.adblock-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.adblock-container > div {
+		color: #ddd;
+	}
+	
+	.adblock-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bF7F7F;
+		cursor: pointer;
+	}
+	
+	.code-switcher
+	{
+		background: #333;
+		padding: 20px 30px;
+		border-radius: 12px;
+		position: relative;
+		border-top-right-radius: 0;
+		
+		margin: 40px 0;
+	}
+	
+	.switcher 
+	{
+		position: absolute;
+		right:0;
+		top: -24px;
+	}
+	
+	.sw-bp,
+	.sw-cpp
+	{
+		padding: 5px 10px;
+		background: #333;
+		color: #bbb;
+		transition:background 0.2s ease-in-out;
+	}
+	
+	.sw-bp:hover,
+	.sw-cpp:hover
+	{
+		background:#222x;
+		cursor: pointer;
+	}
+	.sw-cpp
+	{
+		border-top-right-radius: 5px;
+		-border-bottom-right-radius: 5px;
+	}
+	
+	.sw-bp
+	{
+		border-top-left-radius: 5px;
+		-border-bottom-left-radius: 5px;
+	}
+	
+	.code-switcher .bp
+	{
+		margin: 20px 10px;
+	}
+	
+	.code-switcher.show-cpp-false .bp,
+	.code-switcher.show-cpp-true .cpp {
+		display: block;
+	}
+	
+	.code-switcher.show-cpp-false .cpp,
+	.code-switcher.show-cpp-true .bp {
+		display: none;
+	}
+	
+	.code-switcher.show-cpp-false .switcher .sw-cpp,
+	.code-switcher.show-cpp-true .switcher .sw-bp
+	{
+		background: #202020;
+	}
+	
+	.centered
+	{
+		text-align:center;
+		margin: 30px 0;
+	}
+	
+	.token.ue-macro
+	{
+		color: #ADA8E6;
+	}
+	
+	.token.ue-class
+	{
+		color:#70d997;
+	}
+	
+	.bp .bpcode {
+		margin-bottom:0;
+		position:relative;
+	}
+	
+	.bp .bpcode > button {
+		position: absolute;
+		bottom: 20px;
+		top: unset;
+	}
+	
+	input:focus-visible {
+		outline: none;
+	}
+	
+	table {
+		border: 1px solid #555;
+		border-collapse: collapse;
+		-border-radius: 14px;
+	}
+	
+	.markdown-section table {
+		width:fit-content;
+	}
+	
+	.markdown-section td:last-child, .markdown-section th:last-child
+	{
+		border-right:none;
+	}
+	
+	.markdown-section td:first-child, .markdown-section th:first-child
+	{
+		border-left:none;
+	}
+	
+	.markdown-section th, .markdown-section tr
+	{
+		border-top:none;
+	}
+	
+	.markdown-section tr:last-child, .markdown-section tr:last-child > td
+	{
+		border-bottom:none;
+	}
+	
+	.markdown-section td {
+		padding: 10px 15px;
+	}
+    
+    .work-container { display:none }
+    
+    .ue-button:hover {
+      filter: invert(0);
+    }
+    
+    .ue-button {
+      transition: 0.25s ease-in-out;
+       border: 1px solid white;
+      background: #eee;
+      border-radius: 4px;
+      color: black !important;
+      text-decoration:none;
+      padding: 20px 22px;
+      margin-right: 10px;
+      filter: invert(1);
+    }
+    
+    .ue-button img {
+      margin-left: 5px;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      vertical-align: middle;
+    }
+	
+	.work-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bFbF7F; 
+		color:white;
+		background: #282b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+	}
+	
+	.work-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.work-container > div {
+		color: #ddd;
+	}
+	
+	.work-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bFbF7F;
+		cursor: pointer;
+	}
+    .sidebar .duration {
+        display: none
+    }
+    .duration {
+        background: #eee;
+        color: #222 !important;
+        padding: 6px 10px;
+        border: 1px solid black;
+        margin-left: 20px;;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+	@media (max-width: 600px)
+	{
+		.code-switcher
+		{
+			padding: 8px 10px;
+		}
+		
+		.markdown-section
+		{
+			max-width:95%
+		}
+	}
+	
+	
+  </style>
+</head>
+<body data-page="color.md" class="ready sticky">
+  <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><h1 class="app-name"><a class="app-name-link" data-nosearch="" href=".">HexaSphere Library</a></h1><div class="sidebar-nav"><ul><li><p>Quick Start</p><ul><li><a href="createplanet" title="Create a Planet">Create a Planet</a></li></ul></li><li><p>Sphere Generation</p><ul><li><a href="tiles" title="Tiles">Tiles</a></li><li><a href="noise" title="Noise">Noise</a></li><li><a href="mesh" title="Mesh">Mesh</a></li><li class="active"><a href="color" title="Color">Color</a><ul class="app-sub-sidebar"><li><a class="section-link" href="color.html#solid-tile-color" title="Solid Tile Color">Solid Tile Color</a></li><ul class="app-sub-sidebar"><li><a class="section-link" href="color.html#_1-computing-the-color-for-each-tile" title="1. Computing the Color for each Tile"><strong>1.</strong> Computing the Color for each Tile</a></li><li><a class="section-link" href="color.html#_2-pass-the-color-data-to-the-mesh" title="2. Pass the Color Data to the Mesh"><strong>2.</strong> Pass the Color Data to the Mesh</a></li><li><a class="section-link" href="color.html#_3-assign-a-material" title="3. Assign a Material"><strong>3.</strong> Assign a Material</a></li></ul></ul></li><li><a href="pathfinding" title="Path Finding">Path Finding</a></li></ul></li><li><p>Support</p><ul><li><a href="troubleshoting" title="Troubleshoting">Troubleshoting</a></li><li><a href="support" title="Contact">Contact</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h1 id="coloring-the-tiles"><a href="color.html#coloring-the-tiles" data-id="coloring-the-tiles" class="anchor"><span>Coloring the Tiles</span></a></h1><p>This section covers how to color the tiles.</p><h2 id="solid-tile-color"><a href="color.html#solid-tile-color" data-id="solid-tile-color" class="anchor"><span>Solid Tile Color</span></a></h2><p>To give a solid color to each tile, you can use the <code>Color</code> property on the tile structure.</p><h3 id="_1-computing-the-color-for-each-tile"><a href="color.html#_1-computing-the-color-for-each-tile" data-id="_1-computing-the-color-for-each-tile" class="anchor"><span><strong>1.</strong> Computing the Color for each Tile</span></a></h3><p>The following code shows an example of how to assign a color to the tiles. This is a simple example and the rules for the color can be as specific as you want.</p><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// Iterates over all tiles.</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">FHexaTile</span><span class="token operator">&amp;</span> Tile <span class="token operator">:</span> Tiles<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// Gets how much the tile is extruded. A higher number means a higher tile.</span>
+    <span class="token keyword">const</span> <span class="token keyword">float</span> Height <span class="token operator">=</span> Tile<span class="token punctuation">.</span><span class="token function">Height</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// If the height is &lt;= 0.f, we set its color to blue to represent water.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Height <span class="token operator">&lt;=</span> <span class="token number">0.f</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        Tile<span class="token punctuation">.</span>Color <span class="token operator">=</span> <span class="token class-name">FLinearColor</span><span class="token punctuation">(</span><span class="token number">0.055f</span><span class="token punctuation">,</span> <span class="token number">0.53f</span><span class="token punctuation">,</span> <span class="token number">0.8f</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Blue for water.</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// If the tile is a ground tile.</span>
+    <span class="token keyword">else</span> 
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Mixes the color based on the height to have a nice gradient.</span>
+        <span class="token comment">// The mix value called Alpha is Height / 100.f.</span>
+        <span class="token comment">// When Alpha ~= 0.f, the tile is green. It becomes more red as it </span>
+        <span class="token comment">// approaches 1.f and finally turns to white as it approaches 2.f.</span>
+        Tile<span class="token punctuation">.</span>Color <span class="token operator">=</span> <span class="token class-name">FHexaSphereUtils</span><span class="token double-colon punctuation">::</span><span class="token function">MixColorsManyLinear</span>
+        <span class="token punctuation">(</span>
+            <span class="token class-name">FLinearColor</span><span class="token punctuation">(</span><span class="token number">0.2f</span><span class="token punctuation">,</span> <span class="token number">1.f</span><span class="token punctuation">,</span> <span class="token number">0.2f</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// Green for grass.</span>
+            <span class="token class-name">FLinearColor</span><span class="token punctuation">(</span><span class="token number">1.f</span><span class="token punctuation">,</span> <span class="token number">0.8f</span><span class="token punctuation">,</span> <span class="token number">1.f</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// Red-ish for mountains.</span>
+            <span class="token class-name">FLinearColor</span><span class="token double-colon punctuation">::</span>White<span class="token punctuation">,</span> <span class="token comment">// White for high mountains for snow.</span>
+            <span class="token comment">// Above colors are mixed based on the following value.</span>
+            <span class="token comment">// Can be modified to change the height of grass, mountain, etc.</span>
+            <span class="token comment">// Note that it depends on the radius of the planet.</span>
+            Height <span class="token operator">/</span> <span class="token number">100.f</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<div class="bp">
+<div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_4" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_4"'
+   VariableReference=(MemberName="Hexa Sphere",MemberGuid=FD75A70E45BA20382AA5B9A8C345B35C,bSelfContext=True)
+   NodePosX=-1104
+   NodePosY=-1568
+   NodeGuid=C4F108124DE711A31D6D0E97DA249318
+   CustomProperties Pin (PinId=4CB40BC74EEBDE2A50FBB693032D17AA,PinName="Hexa Sphere",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_5 BC28378A4A25394820B1C6A94E63FDB6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=279CA2CD4DEF1AFA818AEE9C58A57A5A,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_5" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_5"'
+   VariableReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',MemberName="Tiles")
+   SelfContextInfo=NotSelfContext
+   NodePosX=-1104
+   NodePosY=-1616
+   NodeGuid=7221078B4D7B8625529B7D915D904000
+   CustomProperties Pin (PinId=A8E823544B24D99995364FBBF6BFA112,PinName="Tiles",PinFriendlyName=NSLOCTEXT("", "25C8C18743D45139A8B4DA9EE94C5945", "Tiles"),Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MacroInstance_0 42E975AC48514100D862F6BCA14E97B3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BC28378A4A25394820B1C6A94E63FDB6,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_4 4CB40BC74EEBDE2A50FBB693032D17AA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MacroInstance Name="K2Node_MacroInstance_0" ExportPath=/Script/BlueprintGraph.K2Node_MacroInstance'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_MacroInstance_0"'
+   MacroGraphReference=(MacroGraph=/Script/Engine.EdGraph'"/Engine/EditorBlueprintResources/StandardMacros.StandardMacros:ForEachLoop"',GraphBlueprint=/Script/Engine.Blueprint'"/Engine/EditorBlueprintResources/StandardMacros.StandardMacros"',GraphGuid=99DBFD5540A796041F72A5A9DA655026)
+   ResolvedWildcardType=(PinCategory="struct",PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',ContainerType=Array)
+   NodePosX=-912
+   NodePosY=-1712
+   NodeGuid=6BDEACE0425B5C0BD762FA80666AE0FE
+   CustomProperties Pin (PinId=83AD1FD94D311533987B86AA0571D733,PinName="Exec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CustomEvent_0 5F1FB9D14E5E25449901FF957033E2CA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=42E975AC48514100D862F6BCA14E97B3,PinName="Array",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_5 A8E823544B24D99995364FBBF6BFA112,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1EDD913E47F0CE7FFD8A768BEACA56B3,PinName="LoopBody",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_IfThenElse_0 6ECA0F12443FB7DE574B16A7F3A5E075,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=26E9A79842B6E7819F9440A1BF9561A6,PinName="Array Element",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_8 EF71F33040E6A3397A4564AAAFF04690,K2Node_Knot_1 82B180BE474B4538EFD88980B9964A49,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B5973B4D4DAD527C80D9E9B8EF2F61C8,PinName="Array Index",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AF794234481B9345C053E6AE777E9D07,PinName="Completed",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_CustomEvent_0" ExportPath=/Script/BlueprintGraph.K2Node_CustomEvent'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CustomEvent_0"'
+   CustomFunctionName="Paint Planet"
+   NodePosX=-1088
+   NodePosY=-1728
+   ErrorType=1
+   NodeGuid=97CACB50429B1EEC15EAA5B529B14F22
+   CustomProperties Pin (PinId=EE2DBDDE44794FC4B2CAB6853807BE50,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',MemberName="Paint Planet",MemberGuid=97CACB50429B1EEC15EAA5B529B14F22),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5F1FB9D14E5E25449901FF957033E2CA,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MacroInstance_0 83AD1FD94D311533987B86AA0571D733,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_8" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_8"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',MemberName="GetHeight")
+   NodePosX=-688
+   NodePosY=-1648
+   NodeGuid=CDEE5F7C47864B1722AB399850F52062
+   CustomProperties Pin (PinId=B95E87CD499D455D52046EBA37DECCA5,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EF71F33040E6A3397A4564AAAFF04690,PinName="Tile",PinToolTip="Tile\nHexa Tile Structure (by ref)",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MacroInstance_0 26E9A79842B6E7819F9440A1BF9561A6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A54C539B404DED657BCFD693B8EC0040,PinName="ReturnValue",PinFriendlyName=NSLOCTEXT("", "53C9DD7F40B5B3E68AB198B0BC5834CF", "Height"),PinToolTip="Height\nFloat (single-precision)\n\nThe height of the tile.",Direction="EGPD_Output",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.0",AutogeneratedDefaultValue="0.0",LinkedTo=(K2Node_PromotableOperator_2 39320BCC4F47A3AA57877B918410A1BE,K2Node_PromotableOperator_4 955770AC44A7C97188D357B1CA4D6BC0,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_IfThenElse Name="K2Node_IfThenElse_0" ExportPath=/Script/BlueprintGraph.K2Node_IfThenElse'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_IfThenElse_0"'
+   NodePosX=-512
+   NodePosY=-1712
+   NodeGuid=728FAB584F0FEA7E928841B899CB8C37
+   CustomProperties Pin (PinId=6ECA0F12443FB7DE574B16A7F3A5E075,PinName="execute",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MacroInstance_0 1EDD913E47F0CE7FFD8A768BEACA56B3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=71A0184E42F79CBEC7638D9A452C6EBD,PinName="Condition",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="true",AutogeneratedDefaultValue="true",LinkedTo=(K2Node_PromotableOperator_2 79E6535E4669A7A350E640A83616B708,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9E9384824EED212D3FDCCCAC7732C194,PinName="then",PinFriendlyName=NSLOCTEXT("K2Node", "true", "true"),Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_10 5FDB9D5B4381AC6F619CE1A07FAAAD85,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=41CA61F74FD4D4AD47ED528ED1FBF72F,PinName="else",PinFriendlyName=NSLOCTEXT("K2Node", "false", "false"),Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_9 3DC267CD458B84E0A0789A98E89B46B7,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_PromotableOperator Name="K2Node_PromotableOperator_2" ExportPath=/Script/BlueprintGraph.K2Node_PromotableOperator'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_PromotableOperator_2"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetMathLibrary"',MemberName="Greater_DoubleDouble")
+   NodePosX=-528
+   NodePosY=-1600
+   NodeGuid=E6A78ADD4B36F1B42E66CC870C053A26
+   CustomProperties Pin (PinId=39320BCC4F47A3AA57877B918410A1BE,PinName="A",PinToolTip="A\nFloat (double-precision)",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_8 A54C539B404DED657BCFD693B8EC0040,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=228D4A9842322C8C01760C908ABDF4BB,PinName="B",PinToolTip="B\nFloat (double-precision)",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=79E6535E4669A7A350E640A83616B708,PinName="ReturnValue",PinToolTip="Return Value\nBoolean\n\nReturns true if A is greater than B (A &gt; B)",Direction="EGPD_Output",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_IfThenElse_0 71A0184E42F79CBEC7638D9A452C6EBD,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D76547E645C63DDDC39030942CE24791,PinName="ErrorTolerance",PinToolTip="Error Tolerance\n",PinType.PinCategory="",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_9" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_9"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',MemberName="SetColor")
+   NodePosX=-288
+   NodePosY=-1632
+   NodeGuid=4039C8B742E22196B365CF99A7AFED2A
+   CustomProperties Pin (PinId=3DC267CD458B84E0A0789A98E89B46B7,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_IfThenElse_0 41CA61F74FD4D4AD47ED528ED1FBF72F,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EAB79CDB4EC4443E630C2FA3D4D2A3CD,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2BB715934E508BCDC3EE3D9228B158A0,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FC017828475B44BCBE39509BE9BAC6ED,PinName="Tile",PinToolTip="Tile\nHexa Tile Structure (by ref)\n\nThe target tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_0 08172FC14C866025A7665BABBEC447D1,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2DA743C44A991788534330A43CA9B1D1,PinName="Color",PinToolTip="Color\nLinear Color Structure\n\nThe new color for the tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="(R=0.000000,G=0.669080,B=1.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Knot Name="K2Node_Knot_0" ExportPath=/Script/BlueprintGraph.K2Node_Knot'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_Knot_0"'
+   NodePosX=-368
+   NodePosY=-1520
+   NodeGuid=A85E049743486FA6A95737B89182F5B7
+   CustomProperties Pin (PinId=8DD432C2442B6DFC3A695C8CE608A3C6,PinName="InputPin",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_1 333FDAF34D2F594E81D1619FC7B53E0B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=08172FC14C866025A7665BABBEC447D1,PinName="OutputPin",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_9 FC017828475B44BCBE39509BE9BAC6ED,K2Node_CallFunction_10 5A8E8E9249FC608116D1849D7C146BC3,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_Knot Name="K2Node_Knot_1" ExportPath=/Script/BlueprintGraph.K2Node_Knot'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_Knot_1"'
+   NodePosX=-688
+   NodePosY=-1520
+   NodeGuid=882E28084C259E336511CCAAAC1BE2F0
+   CustomProperties Pin (PinId=82B180BE474B4538EFD88980B9964A49,PinName="InputPin",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MacroInstance_0 26E9A79842B6E7819F9440A1BF9561A6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=333FDAF34D2F594E81D1619FC7B53E0B,PinName="OutputPin",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_0 8DD432C2442B6DFC3A695C8CE608A3C6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_10" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_10"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',MemberName="SetColor")
+   NodePosX=-288
+   NodePosY=-1776
+   NodeGuid=8A0726714162B89C1B9B84BE91E4E4D2
+   CustomProperties Pin (PinId=5FDB9D5B4381AC6F619CE1A07FAAAD85,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_IfThenElse_0 9E9384824EED212D3FDCCCAC7732C194,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=819B8FE54928D3412CCF82BC3D3E8306,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=58FAA7E5453717D602FDEFB68DAB2984,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5A8E8E9249FC608116D1849D7C146BC3,PinName="Tile",PinToolTip="Tile\nHexa Tile Structure (by ref)\n\nThe target tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_0 08172FC14C866025A7665BABBEC447D1,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4BA567E24DAE0C27347BF79310DFAED5,PinName="Color",PinToolTip="Color\nLinear Color Structure\n\nThe new color for the tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_11 556B580042CDE5D4BAB68C9630E02FE4,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_11" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_11"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',MemberName="MixColorsManyLinear")
+   NodePosX=-512
+   NodePosY=-1824
+   NodeGuid=18094DBC4D712CCEB8874D941AD061C5
+   CustomProperties Pin (PinId=11DC0C774B6C22B08482D9AA781A914B,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=86A550A245BE701CF0EE8E98A75ECFF0,PinName="Colors",PinToolTip="Colors\nArray of Linear Color Structures\n\nThe list of color to interpolate from.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MakeArray_0 47F87A6341E87CB7C264AA91A9B99E78,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A3DF633B415687CA45EA05AE04BFD8A1,PinName="Alpha",PinToolTip="Alpha\nFloat (single-precision)\n\nThe percentage to mix.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.0",AutogeneratedDefaultValue="0.0",LinkedTo=(K2Node_PromotableOperator_4 118CB8264F4FA58F580758ADF55A4CF5,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=556B580042CDE5D4BAB68C9630E02FE4,PinName="ReturnValue",PinFriendlyName=NSLOCTEXT("", "3FDA0FBB460410B4039CE09EC7B8218E", "Mixed Color"),PinToolTip="Mixed Color\nLinear Color Structure\n\nThe mixed color.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_10 4BA567E24DAE0C27347BF79310DFAED5,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_PromotableOperator Name="K2Node_PromotableOperator_4" ExportPath=/Script/BlueprintGraph.K2Node_PromotableOperator'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_PromotableOperator_4"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetMathLibrary"',MemberName="Divide_DoubleDouble")
+   NodePosX=-704
+   NodePosY=-1760
+   NodeGuid=FC9A988A4153CFC9DB2679A8B1FDEA9F
+   CustomProperties Pin (PinId=955770AC44A7C97188D357B1CA4D6BC0,PinName="A",PinToolTip="A\nFloat (double-precision)",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_8 A54C539B404DED657BCFD693B8EC0040,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FC5FCC9F46AA1F92AD464EAC170DB5A0,PinName="B",PinToolTip="B\nFloat (double-precision)",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="100.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=118CB8264F4FA58F580758ADF55A4CF5,PinName="ReturnValue",PinToolTip="Return Value\nFloat (double-precision)\n\nDivision (A / B)",Direction="EGPD_Output",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_11 A3DF633B415687CA45EA05AE04BFD8A1,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MakeArray Name="K2Node_MakeArray_0" ExportPath=/Script/BlueprintGraph.K2Node_MakeArray'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_MakeArray_0"'
+   NumInputs=3
+   NodePosX=-720
+   NodePosY=-1920
+   NodeGuid=78B960D74548C94C2725108446E0083D
+   CustomProperties Pin (PinId=47F87A6341E87CB7C264AA91A9B99E78,PinName="Array",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_11 86A550A245BE701CF0EE8E98A75ECFF0,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=023163E94CB3E0C7BCD3FA85D37B1CA6,PinName="[0]",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="(R=0.000000,G=0.921875,B=0.327883,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=18EBF99341B9818209A17FA490CF583E,PinName="[1]",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="(R=1.000000,G=0.222321,B=0.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=318B26CC433440D58653378993704FC9,PinName="[2]",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="(R=1.000000,G=1.000000,B=1.000000,A=1.000000)",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/PaintSphere.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<h3 id="_2-pass-the-color-data-to-the-mesh"><a href="color.html#_2-pass-the-color-data-to-the-mesh" data-id="_2-pass-the-color-data-to-the-mesh" class="anchor"><span><strong>2.</strong> Pass the Color Data to the Mesh</span></a></h3><p>When you generate the mesh data, make sure to also pass the vertex color data.</p><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"ProceduralMeshComponent.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"HexaSphere/HexaSphereLib.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"HexaSphere/HexaTile.h"</span></span>
+<span class="token comment">// ...</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FVector</span><span class="token operator">&gt;</span> Vertices<span class="token punctuation">;</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">int32</span><span class="token operator">&gt;</span> Faces<span class="token punctuation">;</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FColor</span><span class="token operator">&gt;</span> Colors<span class="token punctuation">;</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FVector</span><span class="token operator">&gt;</span> Normals<span class="token punctuation">;</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FProcMeshTangent</span><span class="token operator">&gt;</span> Tangents<span class="token punctuation">;</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FVector2D</span><span class="token operator">&gt;</span> UV0<span class="token punctuation">;</span>
+<span class="token class-name">FHexaSphereLib</span><span class="token double-colon punctuation">::</span><span class="token function">TilesToMesh</span><span class="token punctuation">(</span>Tiles<span class="token punctuation">,</span> Vertices<span class="token punctuation">,</span> Faces<span class="token punctuation">,</span> Colors<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ProceduralMesh<span class="token operator">-&gt;</span><span class="token function">CreateMeshSection</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> Vertices<span class="token punctuation">,</span> Faces<span class="token punctuation">,</span> Normals<span class="token punctuation">,</span> UV0<span class="token punctuation">,</span> Colors<span class="token punctuation">,</span> Tangents<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<div class="bp">
+<div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_CustomEvent_1" ExportPath=/Script/BlueprintGraph.K2Node_CustomEvent'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CustomEvent_1"'
+   CustomFunctionName="Generate Mesh Data"
+   NodePosX=-944
+   NodePosY=-2416
+   NodeGuid=F5862AFC45194F7D47E72AB46F5310CA
+   CustomProperties Pin (PinId=2ACD72014DD2196B451FF49CDF066B50,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',MemberName="Generate Mesh Data",MemberGuid=F5862AFC45194F7D47E72AB46F5310CA),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BB8A82A94DC7C5ED4FC1CCB22094191E,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_14 6CB82A5545AF185C75FFC0AFACF59B6D,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_4" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_4"'
+   VariableReference=(MemberName="Hexa Sphere",MemberGuid=FD75A70E45BA20382AA5B9A8C345B35C,bSelfContext=True)
+   NodePosX=-960
+   NodePosY=-2288
+   NodeGuid=014BADDD495EBC73BD666090FB589BCD
+   CustomProperties Pin (PinId=4CB40BC74EEBDE2A50FBB693032D17AA,PinName="Hexa Sphere",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_12 EB8B94D04BEA26638914219B4E5BF485,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=279CA2CD4DEF1AFA818AEE9C58A57A5A,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_12" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_12"'
+   bIsPureFunc=True
+   bIsConstFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',MemberName="ToMesh")
+   NodePosX=-800
+   NodePosY=-2272
+   NodeGuid=6C1343B5448AFE2EAE6F5D928DD29BF1
+   CustomProperties Pin (PinId=EB8B94D04BEA26638914219B4E5BF485,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_4 4CB40BC74EEBDE2A50FBB693032D17AA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8F849B2B451DA7B17AC230BCFFAE7E57,PinName="OutVertices",PinToolTip="Out Vertices\nArray of Vectors\n\nThe resulting vertices.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_14 4764C19A4BDF603EA8FCF9B845FC4ED1,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8B3D2B464D89BD5383A5F0A140F151BC,PinName="OutTriangles",PinToolTip="Out Triangles\nArray of Integers\n\nThe resulting triangles.",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_14 2AA0B3A04C97A815379953B90575010A,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EFF6BEBD4B788E6F9398D890144652E8,PinName="OutVertexColors",PinToolTip="Out Vertex Colors\nArray of Linear Color Structures\n\nThe resulting vertex colors.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_14 B02D4FDF4E39AF6D2C7CC0AB6E847A25,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=211B1EB84EBB8B4A08C0BB8A9AEC64C9,PinName="bConnectTiles",PinToolTip="Connect Tiles\nBoolean\n\nIf tiles should be connected to the center of the sphere vertically.",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="true",AutogeneratedDefaultValue="false",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_9" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_9"'
+   VariableReference=(MemberName="ProceduralMesh",bSelfContext=True)
+   NodePosX=-688
+   NodePosY=-2336
+   NodeGuid=89467A8C4335FCAA4FDBBD9D7F89C79E
+   CustomProperties Pin (PinId=262DA907470E8A742C668B887E183841,PinName="ProceduralMesh",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/ProceduralMeshComponent.ProceduralMeshComponent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_14 D9BC8498449179B930C1C58273FB83FC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2F6166C94CC0046A2AD53ABB0AC27DB7,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_14" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_14"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/ProceduralMeshComponent.ProceduralMeshComponent"',MemberName="CreateMeshSection_LinearColor")
+   NodePosX=-464
+   NodePosY=-2416
+   AdvancedPinDisplay=Hidden
+   NodeGuid=596A9E91440AF2F254421B85629722DE
+   CustomProperties Pin (PinId=6CB82A5545AF185C75FFC0AFACF59B6D,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CustomEvent_1 BB8A82A94DC7C5ED4FC1CCB22094191E,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D7351D3E497BF495EC230F9327DC5975,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D9BC8498449179B930C1C58273FB83FC,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nProcedural Mesh Component Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/ProceduralMeshComponent.ProceduralMeshComponent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_9 262DA907470E8A742C668B887E183841,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D16554144CD67F00220BCAACFD11A4D3,PinName="SectionIndex",PinToolTip="Section Index\nInteger\n\nIndex of the section to create or replace.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4764C19A4BDF603EA8FCF9B845FC4ED1,PinName="Vertices",PinToolTip="Vertices\nArray of Vectors\n\nVertex buffer of all vertex positions to use for this mesh section.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_12 8F849B2B451DA7B17AC230BCFFAE7E57,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2AA0B3A04C97A815379953B90575010A,PinName="Triangles",PinToolTip="Triangles\nArray of Integers\n\nIndex buffer indicating which vertices make up each triangle. Length must be a multiple of 3.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_12 8B3D2B464D89BD5383A5F0A140F151BC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9C7E13D242C8CD54518666BD240DC0E9,PinName="Normals",PinToolTip="Normals\nArray of Vectors\n\nOptional array of normal vectors for each vertex. If supplied, must be same length as Vertices array.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=109FCA0F4BC002DA7BE5658B8B6C7D03,PinName="UV0",PinToolTip="UV0\nArray of Vector 2D Structures\n\nOptional array of texture co-ordinates for each vertex. If supplied, must be same length as Vertices array.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6D5F799849227253629651BE63B4C52B,PinName="UV1",PinToolTip="UV1\nArray of Vector 2D Structures",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=02E394984C6CA799FF8BF8AB22CF830F,PinName="UV2",PinToolTip="UV2\nArray of Vector 2D Structures",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AAFE797648980FDE7C8877901EA2C72D,PinName="UV3",PinToolTip="UV3\nArray of Vector 2D Structures",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector2D"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B02D4FDF4E39AF6D2C7CC0AB6E847A25,PinName="VertexColors",PinToolTip="Vertex Colors\nArray of Linear Color Structures\n\nOptional array of colors for each vertex. If supplied, must be same length as Vertices array.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_12 EFF6BEBD4B788E6F9398D890144652E8,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=38CCA41E4B5494B3A4DF2CB017B99DA8,PinName="Tangents",PinToolTip="Tangents\nArray of Proc Mesh Tangent Structures\n\nOptional array of tangent vector for each vertex. If supplied, must be same length as Vertices array.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/ProceduralMeshComponent.ProcMeshTangent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FE93EF654152999EF8824A8C7F667E0C,PinName="bCreateCollision",PinToolTip="Create Collision\nBoolean\n\nIndicates whether collision should be created for this section. This adds significant cost.",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="false",AutogeneratedDefaultValue="false",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=80C43C3A45EE47ABE6B1EFA29CAB508F,PinName="bSRGBConversion",PinFriendlyName="SRGB Conversion",PinToolTip="SRGB Conversion\nBoolean\n\nWhether to do sRGB conversion when converting FLinearColor to FColor",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="false",AutogeneratedDefaultValue="false",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/GenerateMeshData.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<h3 id="_3-assign-a-material"><a href="color.html#_3-assign-a-material" data-id="_3-assign-a-material" class="anchor"><span><strong>3.</strong> Assign a Material</span></a></h3><p>The last step is to assign a material that uses the vertex color data. You can use the material named <code>MAT_VertexColor</code>.</p><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// C++ example code not available yet.</span></code></pre></div>
+<div class="bp">
+<div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_8" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_8"'
+   VariableReference=(MemberName="ProceduralMesh",bSelfContext=True)
+   NodePosX=-784
+   NodePosY=-2752
+   NodeGuid=0A00947043849DBE5E064CADDABD94EF
+   CustomProperties Pin (PinId=262DA907470E8A742C668B887E183841,PinName="ProceduralMesh",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/ProceduralMeshComponent.ProceduralMeshComponent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_15 95AFD70845D2F96B9076E7A76228DC81,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2F6166C94CC0046A2AD53ABB0AC27DB7,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_15" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_15"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.PrimitiveComponent"',MemberName="SetMaterial")
+   NodePosX=-544
+   NodePosY=-2864
+   NodeGuid=E235241D4B8CE37CA3328089A213FD14
+   CustomProperties Pin (PinId=5DF7D331487E71B2D33DEEBF2F7115DF,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CustomEvent_2 B1F2DEA14678C8135C0A98895C98971B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B96BE95C4C6A6E2034D811AF50D2729C,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=95AFD70845D2F96B9076E7A76228DC81,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nPrimitive Component Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.PrimitiveComponent"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_8 262DA907470E8A742C668B887E183841,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=820C82D041CFF4C4373649B8B984E08A,PinName="ElementIndex",PinToolTip="Element Index\nInteger\n\nThe element to access the material of.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=545FE3594A455D6CD85AFE8BC47E6F59,PinName="Material",PinToolTip="Material\nMaterial Interface Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.MaterialInterface"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/HexaSphereLib/Materials/MAT_VertexColor.MAT_VertexColor",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CustomEvent Name="K2Node_CustomEvent_2" ExportPath=/Script/BlueprintGraph.K2Node_CustomEvent'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CustomEvent_2"'
+   CustomFunctionName="Set Material"
+   NodePosX=-768
+   NodePosY=-2864
+   NodeGuid=EA0FB49F4DB75A7943E31F84C67DD22F
+   CustomProperties Pin (PinId=9BE330E54ECB68910A55E6B8754B902A,PinName="OutputDelegate",Direction="EGPD_Output",PinType.PinCategory="delegate",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(MemberParent=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',MemberName="Set Material",MemberGuid=EA0FB49F4DB75A7943E31F84C67DD22F),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B1F2DEA14678C8135C0A98895C98971B,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_15 5DF7D331487E71B2D33DEEBF2F7115DF,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/SetMaterial.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<p>The code of <code>MAT_VertexColor</code> can be found below:</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/UnrealEd.MaterialGraphNode_Root Name="MaterialGraphNode_Root_0" ExportPath=/Script/UnrealEd.MaterialGraphNode_Root'"/Engine/Transient.MAT_VertexColor:MaterialGraph_0.MaterialGraphNode_Root_0"'
+   Material=/Script/UnrealEd.PreviewMaterial'"/Engine/Transient.MAT_VertexColor"'
+   NodePosX=-784
+   NodePosY=-320
+   NodeGuid=099BC8BE4536039F6C9308B63A21558D
+   CustomProperties Pin (PinId=EB85F4DC4495C69D20D05D8DC4B2A700,PinName="Base Color",PinType.PinCategory="materialinput",PinType.PinSubCategory="5",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(MaterialGraphNode_0 6FD14A02415E8D2D0D2B8AA7D7A2E016,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7BF3A2164490DACFD653AAB119732123,PinName="Metallic",PinType.PinCategory="materialinput",PinType.PinSubCategory="6",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=259B013A4FF33E216FE66BBAC62D3830,PinName="Specular",PinType.PinCategory="materialinput",PinType.PinSubCategory="7",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BC64291B4F786BAEB811F9904E4815B6,PinName="Roughness",PinType.PinCategory="materialinput",PinType.PinSubCategory="8",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BBCCBD7C4952E2D62D6C8BAB82D92B62,PinName="Anisotropy",PinType.PinCategory="materialinput",PinType.PinSubCategory="9",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C19EC56445F66A2E34BE52BAD799FEEB,PinName="Emissive Color",PinType.PinCategory="materialinput",PinType.PinSubCategory="0",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C34F57844462B01977B62888AD7F1626,PinName="Opacity",PinType.PinCategory="materialinput",PinType.PinSubCategory="1",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4540A1854C1868E2B2B324A6E7299BD0,PinName="Opacity Mask",PinType.PinCategory="materialinput",PinType.PinSubCategory="2",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A942042A4D51AEBF95BEE98F5D92A51E,PinName="Normal",PinType.PinCategory="materialinput",PinType.PinSubCategory="10",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=16C7BB4844693B3624E927927C7C35A7,PinName="Tangent",PinType.PinCategory="materialinput",PinType.PinSubCategory="11",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B3A793A84BF71EB07A3939A422031E8F,PinName="World Position Offset",PinType.PinCategory="materialinput",PinType.PinSubCategory="12",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6553187C4CF455E1B7BC358AC97761A4,PinName="Subsurface Color",PinType.PinCategory="materialinput",PinType.PinSubCategory="15",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FD0565D54888984997B2A7AA663F6F19,PinName="Custom Data 0",PinType.PinCategory="materialinput",PinType.PinSubCategory="16",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=28E2B7864EAA14BE5F1B73911652CA08,PinName="Custom Data 1",PinType.PinCategory="materialinput",PinType.PinSubCategory="17",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4D60552F422FF524A28243BAC089C306,PinName="Ambient Occlusion",PinType.PinCategory="materialinput",PinType.PinSubCategory="18",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E156B67440EEFF23AA3199904C88EFD1,PinName="Refraction (Disabled)",PinType.PinCategory="materialinput",PinType.PinSubCategory="19",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7140EBB64877657EF288F298404E0891,PinName="Customized UV0",PinType.PinCategory="materialinput",PinType.PinSubCategory="20",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=520322034255402080AFD8BF7767AA17,PinName="Customized UV1",PinType.PinCategory="materialinput",PinType.PinSubCategory="21",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AFD7171F4FC915C5294A01BD0513CFC1,PinName="Customized UV2",PinType.PinCategory="materialinput",PinType.PinSubCategory="22",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1B009F8E4CA1D7DBA1F12F973F874E49,PinName="Customized UV3",PinType.PinCategory="materialinput",PinType.PinSubCategory="23",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BBA0C61942B584ACE4AC91B0BA92A1F9,PinName="Customized UV4",PinType.PinCategory="materialinput",PinType.PinSubCategory="24",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E8DBCE5A4A8A852C9DF31BA3A1FAB6E1,PinName="Customized UV5",PinType.PinCategory="materialinput",PinType.PinSubCategory="25",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=95A68FCC4CAB77B52F59259B87BD8A46,PinName="Customized UV6",PinType.PinCategory="materialinput",PinType.PinSubCategory="26",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C9AE42D64ACC252EE0CA9D86A43B8FE5,PinName="Customized UV7",PinType.PinCategory="materialinput",PinType.PinSubCategory="27",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EDE3278F4D5DCC036BE767AA6F6E0E03,PinName="Pixel Depth Offset",PinType.PinCategory="materialinput",PinType.PinSubCategory="28",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8828BBF04AA65ACDFC00F2BE87BD1B4A,PinName="Shading Model",PinType.PinCategory="materialinput",PinType.PinSubCategory="29",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1D9AE6FC4F52ACE09FCFD0A242BDAC2D,PinName="Surface Thickness",PinType.PinCategory="materialinput",PinType.PinSubCategory="31",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=20C37DB34070F9807F8F25BE65D892D9,PinName="Front Material",PinType.PinCategory="materialinput",PinType.PinSubCategory="30",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=667B21304598155795C9DE8FCEABBA3E,PinName="Material Attributes",PinType.PinCategory="materialinput",PinType.PinSubCategory="32",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/UnrealEd.MaterialGraphNode Name="MaterialGraphNode_0" ExportPath=/Script/UnrealEd.MaterialGraphNode'"/Engine/Transient.MAT_VertexColor:MaterialGraph_0.MaterialGraphNode_0"'
+   Begin Object Class=/Script/Engine.MaterialExpressionVertexColor Name="MaterialExpressionVertexColor_0" ExportPath=/Script/Engine.MaterialExpressionVertexColor'"/Engine/Transient.MAT_VertexColor:MaterialGraph_0.MaterialGraphNode_0.MaterialExpressionVertexColor_0"'
+   End Object
+   Begin Object Name="MaterialExpressionVertexColor_0" ExportPath=/Script/Engine.MaterialExpressionVertexColor'"/Engine/Transient.MAT_VertexColor:MaterialGraph_0.MaterialGraphNode_0.MaterialExpressionVertexColor_0"'
+      MaterialExpressionEditorX=-1008
+      MaterialExpressionEditorY=-320
+      MaterialExpressionGuid=9C41C1014F975A1A86C735856F756709
+      Material=/Script/UnrealEd.PreviewMaterial'"/Engine/Transient.MAT_VertexColor"'
+      bCollapsed=False
+   End Object
+   MaterialExpression=/Script/Engine.MaterialExpressionVertexColor'"MaterialExpressionVertexColor_0"'
+   NodePosX=-1008
+   NodePosY=-320
+   NodeGuid=5CD15AC54257C993EF4164B9C29A0707
+   CustomProperties Pin (PinId=6FD14A02415E8D2D0D2B8AA7D7A2E016,PinName="Output",PinFriendlyName=NSLOCTEXT("MaterialGraphNode", "Space", " "),Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(MaterialGraphNode_Root_0 EB85F4DC4495C69D20D05D8DC4B2A700,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D76D261E414EE9A2874C049D00CF439B,PinName="Output2",PinFriendlyName=NSLOCTEXT("MaterialGraphNode", "Space", " "),Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="red",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=77B57FED40853C20881B048E003CF03A,PinName="Output3",PinFriendlyName=NSLOCTEXT("MaterialGraphNode", "Space", " "),Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="green",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7902468740B55CFA6183F1AA6377E89D,PinName="Output4",PinFriendlyName=NSLOCTEXT("MaterialGraphNode", "Space", " "),Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="blue",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E3D383AB4C60A218FF2922B51AF13C21,PinName="Output5",PinFriendlyName=NSLOCTEXT("MaterialGraphNode", "Space", " "),Direction="EGPD_Output",PinType.PinCategory="mask",PinType.PinSubCategory="alpha",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/VertexColorMaterial.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p>You should now have a coloring similar to what is shown in the image below:</p><div class="centered">
+<img alt="Planet example" src="./_images/ColorExampleResult.png" style="max-width:600px">
+</div>
+<script>
+setTimeout(() => {
+    bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+    switchCode();
+}, 0);
+</script>
+</article></section></main>
+  
+  <script>
+	function copyBlueprintCode(button){
+		button.innerHTML = "Copied!";
+		setTimeout(() => {button.innerHTML = "Copy Code"}, 5000);
+		var c=button.parentNode.children[0];
+		c.style.display="block";
+		c.select();
+		document.execCommand("copy");
+		c.style.display="none";
+	}</script>
+  <script>
+	var bShowCPP = false;
+	function switchCode()
+	{
+		bShowCPP = !bShowCPP;
+		var elems = document.getElementsByClassName('code-switcher');
+		
+		for (var i = 0; i < elems.length; ++i)
+		{
+			elems[i].classList.remove('show-cpp-' + !bShowCPP);
+			elems[i].classList.add('show-cpp-' + bShowCPP);
+		}
+		
+		setCookie('bShowCPP', bShowCPP, 7);
+	}
+	function switchCpp()
+	{
+		bShowCPP = false;
+		switchCode();
+	}
+	function switchBp()
+	{
+		bShowCPP = true;
+		switchCode();
+	}
+	function setCookie(name,value,days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days*24*60*60*1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + value + expires + "; path=/";
+	}
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i<ca.length;i++){
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ)==0)return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	
+	function changeSelectedCode()
+	{
+		setTimeout(() => {
+			bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+			switchCode();
+		}, 0);
+	}
+	
+	bShowCPP = JSON.parse(getCookie('bShowCPP'));
+  </script>
+  
+  <script>
+    window.$docsify = {
+      name: 'HexaSphere Library',
+	  loadSidebar: true,
+	  subMaxLevel: 3,
+	  executeScript: true,
+    }
+  </script>
+<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js" data-ga=""></script>
+<script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+<script src="js/prism-cpp.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+<script src="js/custom-class.min.js"></script>
+<script>
+var CustomMacros = 
+[
+	'UCLASS',
+	"UFUNCTION",
+	"UPROPERTY",
+	"GENERATED_BODY",
+	'check',
+	"TEXT",
+	"MYGAME_API",
+    "AddDynamic",
+    "USTRUCT"
+];
+var CustomTypes = 
+[
+	"ThisClass",
+	"int32",
+	"Super",
+    "FHexaSphereParameters",
+    "FHexaTile",
+    "TArray",
+    "FHexaSphereLib",
+    "FLinearColor",
+    "FHexaSphereNoise",
+    "FVector2D",
+    "FVector",
+    "FColor",
+    "FProcMeshTangent"
+];
+(function () {
+    Prism.languages['cpp']['class-name'].push(new RegExp(CustomTypes.join('|'))); 
+    Prism.languages['cpp']['ue-macro'].push(new RegExp(CustomMacros.join('|')));
+	Prism.plugins.customClass.add(({content, type, language}) => {
+		if (language == "cpp")
+		{	
+			if (CustomMacros.includes(content)) {
+				return 'ue-macro';
+			}
+			else if (CustomTypes.includes(content))
+			{
+				return 'ue-class';
+			}
+			
+			if (content.length > 1 && (content[0] == "F" || content[0] == "U"|| content[0] == "E" || content[0] == "T") && content[1] == content[1].toUpperCase())
+			{
+				return 'ue-class';
+			}
+		}
+        console.log(content);
+	});
+}());
+</script>
+
+<div class="progress" style="opacity: 0; width: 0%;"></div><script async="" src="https://www.google-analytics.com/analytics.js"></script></body></html>

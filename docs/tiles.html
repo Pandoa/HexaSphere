@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Tiles | HexaSphere Library</title>
+    <link rel="icon" href="_media/favicon.webp">
+    <meta name="keywords" content="doc,docs,documentation,gitbook,HexaSphere,features,unreal,engine">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Documentation for the HexaSphere plugin available on the Unreal Engine Marketplace.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dark.css">
+  <link rel="icon" href="favicon.png">
+  <meta property="og:title" content="HexaSphereLib Documentation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pandoa.github.io/HexaSphere/">
+  <style>
+	:root {--theme-color: #70a2ff }
+	html, body, .content {background: #121212}
+	.markdown-section a {color:#00ff80;font-weight:400;}
+	.sidebar {background-color: #242424}
+	textarea {display:none}
+	.sidebar a.section-link {font-size: 0.8em}
+	.app-sub-sidebar li > a.section-link {color:var(--theme-color)}
+	.app-sub-sidebar li {margin:0}
+	.markdown-section code {color: var(--theme-color);}
+	.markdown-section h3 { margin: 20px 0 0 }
+	.markdown-section p.tip {border-left: 4px solid var(--theme-color);color:#bbb;border-radius:6px}
+	.markdown-section p.tip:before {background: var(--theme-color)}
+	.markdown-section p.tip code {color: var(--theme-color); background-color: #333}
+	.markdown-section blockquote p {padding: 10px;color:white;}
+	.markdown-section blockquote {background: linear-gradient(0.21turn, #333, #222, #2a2a2a);
+		border-radius:4px;box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)}
+	.markdown-section pre {border-radius:12px}
+	.markdown-section pre>code {color: #ddd;line-height:18px}
+	.markdown-section p.tip, .markdown-section tr:nth-child(2n) {background:#222}
+	.markdown-section p.warn {border: 1px solid #bF7F7F; color:white;border-radius:6px}
+	.markdown-section td, .markdown-section th {border:1px solid #555}
+	.token.class-name {color: #70d997}
+	.token.function {color: #efefbf}
+	.token.keyword {color: #569cd6}
+	.token.comment {color: #aaa}
+	.token.punctuation{color: #999}
+	.token.attr-name {color: #4993e7 }
+	.token.tag { color: #a8caff }
+	.token.string {color: magenta}
+	.sidebar ul>li>a {color: #888}
+	.token.punctuation.annotation {color: #666}
+	.sidebar-toggle {width: 300px; background: #555;transition: width 0.2s linear}
+	.sidebar-nav > ul > li > ul > li  {margin:0}
+	.token.attr-value, .token.control, .token.unit { color:magenta }
+	.token.directive { color: #ADC8D6 }
+	body.close .sidebar-toggle {width: 36px}
+	h4 {margin-block-end: 0.33em;margin-block-start: 0.66em}
+	h5 {margin-block-start: 1em;margin-block-end: 0}
+	.markdown-section h5{font-size:1.1rem}
+	thead{background: #333}
+	.anchor span {font-weight:600}
+	/* width */
+    ::-webkit-scrollbar {
+      width: 6px;
+	  height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #777;
+	  border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+	::marker {color: #999;font-weight:100}
+	@media screen and (max-width: 768px) {
+		.sidebar-toggle {width:auto}
+	}
+	
+	.cpp > pre,
+	img {
+		border-radius:16px;
+		box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+		border: 1px solid black;
+	}
+	
+	.switcher,
+	img, .sidebar {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
+	
+	.bpcode {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.bpcode > button {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		
+		border: 1px solid white; 
+		background: rgba(18,18,18, 0.1);
+		color:white;
+		padding:10px 20px;
+		border-radius:5px;
+		cursor:pointer;
+		
+		width: 150px;
+		height: 40px;
+		position: relative;
+		top: -40px;		
+		
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, background 0.2s ease-in-out;
+	}
+	
+	.bpcode:hover > button {
+		opacity: 0.7;
+		top: -60px;
+	}
+	
+	.bpcode:hover > button:hover {
+		background: rgba(255, 255, 255, 0.05)
+	}
+	
+	.bpcode:hover > button:active {
+		background: rgba(255, 255, 255, 0.1)
+	}
+	
+	.adblock-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bF7F7F; 
+		color:white;
+		background: #281b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+		
+		display: none;
+	}
+	
+	.adblock-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.adblock-container > div {
+		color: #ddd;
+	}
+	
+	.adblock-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bF7F7F;
+		cursor: pointer;
+	}
+	
+	.code-switcher
+	{
+		background: #333;
+		padding: 20px 30px;
+		border-radius: 12px;
+		position: relative;
+		border-top-right-radius: 0;
+		
+		margin: 40px 0;
+	}
+	
+	.switcher 
+	{
+		position: absolute;
+		right:0;
+		top: -24px;
+	}
+	
+	.sw-bp,
+	.sw-cpp
+	{
+		padding: 5px 10px;
+		background: #333;
+		color: #bbb;
+		transition:background 0.2s ease-in-out;
+	}
+	
+	.sw-bp:hover,
+	.sw-cpp:hover
+	{
+		background:#222x;
+		cursor: pointer;
+	}
+	.sw-cpp
+	{
+		border-top-right-radius: 5px;
+		-border-bottom-right-radius: 5px;
+	}
+	
+	.sw-bp
+	{
+		border-top-left-radius: 5px;
+		-border-bottom-left-radius: 5px;
+	}
+	
+	.code-switcher .bp
+	{
+		margin: 20px 10px;
+	}
+	
+	.code-switcher.show-cpp-false .bp,
+	.code-switcher.show-cpp-true .cpp {
+		display: block;
+	}
+	
+	.code-switcher.show-cpp-false .cpp,
+	.code-switcher.show-cpp-true .bp {
+		display: none;
+	}
+	
+	.code-switcher.show-cpp-false .switcher .sw-cpp,
+	.code-switcher.show-cpp-true .switcher .sw-bp
+	{
+		background: #202020;
+	}
+	
+	.centered
+	{
+		text-align:center;
+		margin: 30px 0;
+	}
+	
+	.token.ue-macro
+	{
+		color: #ADA8E6;
+	}
+	
+	.token.ue-class
+	{
+		color:#70d997;
+	}
+	
+	.bp .bpcode {
+		margin-bottom:0;
+		position:relative;
+	}
+	
+	.bp .bpcode > button {
+		position: absolute;
+		bottom: 20px;
+		top: unset;
+	}
+	
+	input:focus-visible {
+		outline: none;
+	}
+	
+	table {
+		border: 1px solid #555;
+		border-collapse: collapse;
+		-border-radius: 14px;
+	}
+	
+	.markdown-section table {
+		width:fit-content;
+	}
+	
+	.markdown-section td:last-child, .markdown-section th:last-child
+	{
+		border-right:none;
+	}
+	
+	.markdown-section td:first-child, .markdown-section th:first-child
+	{
+		border-left:none;
+	}
+	
+	.markdown-section th, .markdown-section tr
+	{
+		border-top:none;
+	}
+	
+	.markdown-section tr:last-child, .markdown-section tr:last-child > td
+	{
+		border-bottom:none;
+	}
+	
+	.markdown-section td {
+		padding: 10px 15px;
+	}
+    
+    .work-container { display:none }
+    
+    .ue-button:hover {
+      filter: invert(0);
+    }
+    
+    .ue-button {
+      transition: 0.25s ease-in-out;
+       border: 1px solid white;
+      background: #eee;
+      border-radius: 4px;
+      color: black !important;
+      text-decoration:none;
+      padding: 20px 22px;
+      margin-right: 10px;
+      filter: invert(1);
+    }
+    
+    .ue-button img {
+      margin-left: 5px;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      vertical-align: middle;
+    }
+	
+	.work-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bFbF7F; 
+		color:white;
+		background: #282b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+	}
+	
+	.work-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.work-container > div {
+		color: #ddd;
+	}
+	
+	.work-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bFbF7F;
+		cursor: pointer;
+	}
+    .sidebar .duration {
+        display: none
+    }
+    .duration {
+        background: #eee;
+        color: #222 !important;
+        padding: 6px 10px;
+        border: 1px solid black;
+        margin-left: 20px;;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+	@media (max-width: 600px)
+	{
+		.code-switcher
+		{
+			padding: 8px 10px;
+		}
+		
+		.markdown-section
+		{
+			max-width:95%
+		}
+	}
+	
+	
+  </style>
+</head>
+<body data-page="tiles.md" class="ready sticky">
+  <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><h1 class="app-name"><a class="app-name-link" data-nosearch="" href=".">HexaSphere Library</a></h1><div class="sidebar-nav"><ul><li><p>Quick Start</p><ul><li><a href="createplanet" title="Create a Planet">Create a Planet</a></li></ul></li><li><p>Sphere Generation</p><ul><li class="active"><a href="tiles" title="Tiles">Tiles</a><ul class="app-sub-sidebar"><li><a class="section-link" href="tiles.html#synchronous-generation" title="Synchronous Generation">Synchronous Generation</a></li><li><a class="section-link" href="tiles.html#asynchronous-generation" title="Asynchronous generation">Asynchronous generation</a></li></ul></li><li><a href="noise" title="Noise">Noise</a></li><li><a href="mesh" title="Mesh">Mesh</a></li><li><a href="color" title="Color">Color</a></li><li><a href="pathfinding" title="Path Finding">Path Finding</a></li></ul></li><li><p>Support</p><ul><li><a href="troubleshoting" title="Troubleshoting">Troubleshoting</a></li><li><a href="support" title="Contact">Contact</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h1 id="generating-tiles"><a href="tiles.html#generating-tiles" data-id="generating-tiles" class="anchor"><span>Generating Tiles</span></a></h1><p>This section covers how to generate tiles for a sphere.</p><h2 id="synchronous-generation"><a href="tiles.html#synchronous-generation" data-id="synchronous-generation" class="anchor"><span>Synchronous Generation</span></a></h2><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<p>A list of tiles can be generated with a call to <code>FHexaSphereLib::GenerateHexaSphere()</code>.</p><pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// Includes the library.</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Generation/HexaSphereLib.h"</span></span>
+<span class="token comment">// ...</span>
+<span class="token comment">// The parameters to generate the tiles.</span>
+<span class="token class-name">FHexaSphereParameters</span> Parameters<span class="token punctuation">;</span>
+Parameters<span class="token punctuation">.</span>Divisions <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+Parameters<span class="token punctuation">.</span>Radius <span class="token operator">=</span> <span class="token number">400.f</span><span class="token punctuation">;</span>
+Parameters<span class="token punctuation">.</span>Percent <span class="token operator">=</span> <span class="token number">1.f</span><span class="token punctuation">;</span> 
+Parameters<span class="token punctuation">.</span>bGenerateNeighborData <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token comment">// Generates the tiles.</span>
+<span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FHexaTile</span><span class="token operator">&gt;</span> Tiles <span class="token operator">=</span> <span class="token class-name">FHexaSphereLib</span><span class="token double-colon punctuation">::</span><span class="token function">GenerateHexaSphere</span><span class="token punctuation">(</span>Parameters<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><p>A tile struct contains a few attributes defining the tiles:</p><ol><li><code>CenterPoint</code>: The center point of the hexagon representing the tile.</li><li><code>Boundaries</code>: The boundaries of the tile. For an hexagon, it contains the 6 location of the edges relative to the center of the sphere.</li><li><code>Offset</code>: The tile offset from the surface. If noise is applied to the tile, the noise vector is stored in this property. Can be modified to define an arbitrary offset to the tile.</li><li><code>Color</code>: The color of the tile, that is passed to the material. Can be changed to modify a tile's color.</li><li><code>Neighbors</code>: The index of neighbors of the tiles in the Tiles array. Can be empty if <code>bGenerateNeighborData</code> is set to false when generating the tiles.</li></ol><pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// Gets a tile at an arbitrary index. Make sure to use a ref (&amp;)</span>
+<span class="token comment">// if you want to edit its properties.</span>
+<span class="token class-name">FHexaTile</span><span class="token operator">&amp;</span> FirstTile <span class="token operator">=</span> Tiles<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token comment">// Can access the tile's properties with Tile.X</span>
+<span class="token comment">// Tile.CenterPoint;</span>
+<span class="token comment">// Tile.Boundaries;</span>
+<span class="token comment">// Tile.Offset;</span>
+<span class="token comment">// Tile.Color;</span>
+<span class="token comment">// Tile.Neighbors;</span>
+<span class="token comment">// For example, we can set a tile's color:</span>
+Tile<span class="token punctuation">.</span>Color <span class="token operator">=</span> <span class="token class-name">FLinearColor</span><span class="token double-colon punctuation">::</span>Red<span class="token punctuation">;</span>
+<span class="token comment">// And do the same for its neighbors</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token class-name">int32</span> NeighborIndex <span class="token operator">:</span> Tile<span class="token punctuation">.</span>Neighbors<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    Tiles<span class="token punctuation">[</span>NeighborIndex<span class="token punctuation">]</span><span class="token punctuation">.</span>Color <span class="token operator">=</span> <span class="token class-name">FLinearColor</span><span class="token double-colon punctuation">::</span>Blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<div class="bp">
+<p>A HexaSphere can be generated with a call to the <code>Generate HexaSphere</code> node.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_1" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_1"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',MemberName="GenerateHexaSphere")
+   NodePosX=-432
+   NodePosY=-576
+   NodeGuid=031E3F964DE1EB358981D7B68C26FFC6
+   CustomProperties Pin (PinId=B581677E4BD17A367980869296592A2A,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B95F675847C265571F4FA5A614018EDA,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=0D98338D45321D5D7AC106A2F66B0488,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphere",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D119B6464B7C5DEA59744AA9606F6E85,PinName="Parameters",PinToolTip="Parameters\nHexa Sphere Parameters Structure (by ref)\n\nThe parameters to generate the tiles.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereParameters"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=B9509FF64B3BFD2EACDBC984ABE66028,PinName="ReturnValue",PinFriendlyName=NSLOCTEXT("", "6157BE9E4E3349D290C06BB4CBABFC2E", "HexaSphere"),PinToolTip="Hexa Sphere\nHexa Sphere Object Reference\n\nA list of tiles covering a sphere.",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/GenerateHexaSphereSync.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p>The resulting <code>UHexaSphere</code> object consists of tiles and a few helper methods to manipulate those tiles. It is possible to get the tiles by calling the <code>Get Tiles</code> pure node.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_1" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_1"'
+   VariableReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',MemberName="Tiles")
+   SelfContextInfo=NotSelfContext
+   NodePosX=-544
+   NodePosY=-784
+   NodeGuid=CC054E2844036A0CD470D799FC6B1F66
+   CustomProperties Pin (PinId=4E23CD844485E9286D1949914A657F4A,PinName="Tiles",PinFriendlyName="Tiles",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=30879727407F96ED4FD38F87756CE38B,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_3 DB3F9FB14702CCE8017FF680823C6FB8,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_3" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_3"'
+   VariableReference=(MemberName="Hexa Sphere",MemberGuid=FD75A70E45BA20382AA5B9A8C345B35C,bSelfContext=True)
+   NodePosX=-704
+   NodePosY=-768
+   NodeGuid=1B9855B544BC61DCEB21EC9D48D4E675
+   CustomProperties Pin (PinId=DB3F9FB14702CCE8017FF680823C6FB8,PinName="Hexa Sphere",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_1 30879727407F96ED4FD38F87756CE38B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F5D6718B4BD46765D3A035AA52BB8D2E,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/GetTiles.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+<p>A tile struct contains a few attributes defining the tiles:</p><ol><li><code>Center Point</code>: The center point of the hexagon representing the tile.</li><li><code>Boundaries</code>: The boundaries of the tile. For an hexagon, it contains the 6 location of the edges relative to the center of the sphere.</li><li><code>Offset</code>: The tile offset from the surface. If noise is applied to the tile, the noise vector is stored in this property. Can be modified to define an arbitrary offset to the tile.</li><li><code>Color</code>: The color of the tile, that is passed to the material. Can be changed to modify a tile's color.</li><li><code>Neighbors</code>: The index of neighbors of the tiles in the <code>UHexaSphere</code>'s Tiles array. Can be empty if <code>bGenerateNeighborData</code> is set to false when generating the tiles.</li></ol><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_BreakStruct Name="K2Node_BreakStruct_0" ExportPath=/Script/BlueprintGraph.K2Node_BreakStruct'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_BreakStruct_0"'
+   bMadeAfterOverridePinRemoval=True
+   ShowPinForProperties(0)=(PropertyName="CenterPoint",PropertyFriendlyName="Center Point",PropertyTooltip="The center point of the tile.",CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(1)=(PropertyName="Faces",PropertyFriendlyName="Faces",PropertyTooltip="The faces composing this tile, represented by 3 vertices.",CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(2)=(PropertyName="Boundaries",PropertyFriendlyName="Boundaries",PropertyTooltip="The boundaries of the tile. Each element is a vertex of the (hexa/penta)gone.",CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(3)=(PropertyName="Offset",PropertyFriendlyName="Offset",PropertyTooltip="The offset of the tile.",CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(4)=(PropertyName="Color",PropertyFriendlyName="Color",PropertyTooltip="The color of the tile. Passed as Vertex color for the vertices composing\nthis tile.",CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(5)=(PropertyName="Neighbors",PropertyFriendlyName="Neighbors",PropertyTooltip="The index of the neighboring tiles.",CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   StructType=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"'
+   NodePosX=-832
+   NodePosY=-1136
+   AdvancedPinDisplay=Shown
+   NodeGuid=84F57C7246A774B22BBB4CA1590DAF1A
+   CustomProperties Pin (PinId=072E15904F7743A2ECCC5CA0488B4023,PinName="HexaTile",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=087A52E348F6499849C09D9F584274CC,PinName="CenterPoint",PinFriendlyName="Center Point",PinToolTip="Center Point\nVector\n\nThe center point of the tile.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4729F41F4A128B71827654A77674CB16,PinName="Faces",PinFriendlyName="Faces",PinToolTip="Faces\nArray of Vectors\n\nThe faces composing this tile, represented by 3 vertices.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1FF4671A4BD575144F4E1C8012682A0A,PinName="Boundaries",PinFriendlyName="Boundaries",PinToolTip="Boundaries\nArray of Vectors\n\nThe boundaries of the tile. Each element is a vertex of the (hexa/penta)gone.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4C7926BD419751ED4A6BEEA665C10859,PinName="Offset",PinFriendlyName="Offset",PinToolTip="Offset\nVector\n\nThe offset of the tile.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=A630327047E928102A0D509B37747138,PinName="Color",PinFriendlyName="Color",PinToolTip="Color\nLinear Color Structure\n\nThe color of the tile. Passed as Vertex color for the vertices composing\nthis tile.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=40CC21DD4D4E655BFE0FCDA930C008B1,PinName="Neighbors",PinFriendlyName="Neighbors",PinToolTip="Neighbors\nArray of Integers\n\nThe index of the neighboring tiles.",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/BreakTileStruct.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<h2 id="asynchronous-generation"><a href="tiles.html#asynchronous-generation" data-id="asynchronous-generation" class="anchor"><span>Asynchronous generation</span></a></h2><p>As the number of divisions increases, the time it takes to generate the tiles increases. If you generate huge spheres and start to see a freeze, you might want to switch to asynchronous generation. Asnchronous generations performs the sphere generation in a background thread to not block the Game Thread.</p><p class="tip">Switching thread comes with a delay. You can expect up to nearly <code>2 * 1 / FPS</code> seconds (= <code>33ms</code> at <code>60</code> FPS) of idle delay to leave and come back to the Game Thread.</p><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// Includes the library.</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"Generation/HexaSphereLib.h"</span></span>
+<span class="token comment">// ...</span>
+<span class="token comment">// The parameters to generate the tiles.</span>
+<span class="token class-name">FHexaSphereParameters</span> Parameters<span class="token punctuation">;</span>
+Parameters<span class="token punctuation">.</span>Divisions <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+Parameters<span class="token punctuation">.</span>Radius <span class="token operator">=</span> <span class="token number">400.f</span><span class="token punctuation">;</span>
+Parameters<span class="token punctuation">.</span>Percent <span class="token operator">=</span> <span class="token number">1.f</span><span class="token punctuation">;</span> 
+Parameters<span class="token punctuation">.</span>bGenerateNeighborData <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token comment">// Generates the tiles asynchronously.</span>
+<span class="token class-name">FHexaSphereLib</span><span class="token double-colon punctuation">::</span><span class="token function">GenerateHexaSphereAsync</span><span class="token punctuation">(</span>Parameters<span class="token punctuation">,</span> <span class="token class-name">FGenerateHexaSphereCallback</span><span class="token double-colon punctuation">::</span><span class="token function">CreateLambda</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token class-name">TArray</span><span class="token operator">&lt;</span><span class="token class-name">FHexaTile</span><span class="token operator">&gt;</span> Tiles<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token keyword">void</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// The HexaSphere is represented by the Tiles array.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></div>
+<div class="bp">
+<p>A HexaSphere can be generated asynchronously with a call to the <code>Generate HexaSphere</code> node.</p><p class="tip"><em>Common Mistake:</em> Make sure to connect any code that uses the HexaSphere to the <code>On Generated</code> pin. The HexaSphere object is <code>null</code> on the default pin.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_AsyncAction Name="K2Node_AsyncAction_0" ExportPath=/Script/BlueprintGraph.K2Node_AsyncAction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_AsyncAction_0"'
+   ProxyFactoryFunctionName="GenerateHexaSphereAsync"
+   ProxyFactoryClass=/Script/CoreUObject.Class'"/Script/HexaSphereLib.GenerateHexaSphereProxy"'
+   ProxyClass=/Script/CoreUObject.Class'"/Script/HexaSphereLib.GenerateHexaSphereProxy"'
+   NodePosX=-544
+   NodePosY=-592
+   NodeGuid=FA9C436B4F1D1A7D5E0BAD8E9BB23992
+   CustomProperties Pin (PinId=F36D3D0E4547CA4045CEA08806442901,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=AB1629E5468FC8BE6735C78B80A88096,PinName="then",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=55A1C3EE4E4066E8D8AAE291F8CD6413,PinName="OnGenerated",PinFriendlyName=NSLOCTEXT("", "91F2007143E47D9EF08129B76D7659BD", "On Generated"),Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_Knot_0 B075BD744E801B73E855FDB899A5E7A5,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=831FD72441842C6E870E3081F1F8848B,PinName="HexaSphere",PinToolTip="Hexa Sphere\nHexa Sphere Object Reference",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1C371A4243F03D7A69CB04AE2E9A0D12,PinName="Parameters",PinToolTip="Parameters\nHexa Sphere Parameters Structure",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereParameters"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MakeStruct_0 FF98C99043547AC5244A0C9774B46338,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=630ED1114E44F0D2FA570592D70473A9,PinName="Noise",PinToolTip="Noise\nHexa Sphere Noise Structure",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereNoise"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MakeStruct Name="K2Node_MakeStruct_0" ExportPath=/Script/BlueprintGraph.K2Node_MakeStruct'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_MakeStruct_0"'
+   bMadeAfterOverridePinRemoval=True
+   ShowPinForProperties(0)=(PropertyName="Divisions",PropertyFriendlyName="Divisions",PropertyTooltip=NSLOCTEXT("", "A4EDBAB24C79BA1FCF535EBA6E9AD5CA", "The number of divisions to perform on the sphere.\nA higher number means more tiles. Greatly influences the generation time."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(1)=(PropertyName="Radius",PropertyFriendlyName="Radius",PropertyTooltip=NSLOCTEXT("", "0673F3564904F9C7EC389D92DC1A7C74", "The radius of the hexasphere generated."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(2)=(PropertyName="Percent",PropertyFriendlyName="Percent",PropertyTooltip=NSLOCTEXT("", "2F681C8647C7A8C9BF7E4F90050540BA", "The percentage each tile covers. Must be in [0;1]."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(3)=(PropertyName="bGenerateNeighborData",PropertyFriendlyName="Generate Neighbor Data",PropertyTooltip=NSLOCTEXT("", "8B51DDE44FE60F60C0FCB79B9A630539", "If tile neighboring data should be generated."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   StructType=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereParameters"'
+   NodePosX=-928
+   NodePosY=-512
+   NodeGuid=F2D577DC4FB7D17E3641949D48D0E4F3
+   CustomProperties Pin (PinId=FF98C99043547AC5244A0C9774B46338,PinName="HexaSphereParameters",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereParameters"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_AsyncAction_0 1C371A4243F03D7A69CB04AE2E9A0D12,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=EF809302418C87EBEAE322ABC1990D97,PinName="Divisions",PinFriendlyName=NSLOCTEXT("", "70A46E6E44775189F5F0DFA11D6B39E9", "Divisions"),PinToolTip="Divisions\nInteger\n\nThe number of divisions to perform on the sphere.\nA higher number means more tiles. Greatly influences the generation time.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="30",AutogeneratedDefaultValue="8",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=38E8572D4382F988CA8E3FAA546C49A5,PinName="Radius",PinFriendlyName=NSLOCTEXT("", "251EB26148F1284335A8CBB7DC52906F", "Radius"),PinToolTip="Radius\nFloat (single-precision)\n\nThe radius of the hexasphere generated.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="400.000000",AutogeneratedDefaultValue="10.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1682F1904AA2D67E6F9EF29C90111EA4,PinName="Percent",PinFriendlyName=NSLOCTEXT("", "47E251FF40C93EC05ADFDB9E8C330887", "Percent"),PinToolTip="Percent\nFloat (single-precision)\n\nThe percentage each tile covers. Must be in [0;1].",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="1.000000",AutogeneratedDefaultValue="1.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1226DB60413E5E3FA6DEA297DED544FB,PinName="bGenerateNeighborData",PinFriendlyName=NSLOCTEXT("", "236F739846CDDD6FC45EA8B49B812FB5", "Generate Neighbor Data"),PinToolTip="Generate Neighbor Data\nBoolean\n\nIf tile neighboring data should be generated.",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="True",AutogeneratedDefaultValue="True",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/GenerateSphereAsync.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<script>
+setTimeout(() => {
+    bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+    switchCode();
+}, 0);
+</script>
+</article></section></main>
+  
+  <script>
+	function copyBlueprintCode(button){
+		button.innerHTML = "Copied!";
+		setTimeout(() => {button.innerHTML = "Copy Code"}, 5000);
+		var c=button.parentNode.children[0];
+		c.style.display="block";
+		c.select();
+		document.execCommand("copy");
+		c.style.display="none";
+	}</script>
+  <script>
+	var bShowCPP = false;
+	function switchCode()
+	{
+		bShowCPP = !bShowCPP;
+		var elems = document.getElementsByClassName('code-switcher');
+		
+		for (var i = 0; i < elems.length; ++i)
+		{
+			elems[i].classList.remove('show-cpp-' + !bShowCPP);
+			elems[i].classList.add('show-cpp-' + bShowCPP);
+		}
+		
+		setCookie('bShowCPP', bShowCPP, 7);
+	}
+	function switchCpp()
+	{
+		bShowCPP = false;
+		switchCode();
+	}
+	function switchBp()
+	{
+		bShowCPP = true;
+		switchCode();
+	}
+	function setCookie(name,value,days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days*24*60*60*1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + value + expires + "; path=/";
+	}
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i<ca.length;i++){
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ)==0)return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	
+	function changeSelectedCode()
+	{
+		setTimeout(() => {
+			bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+			switchCode();
+		}, 0);
+	}
+	
+	bShowCPP = JSON.parse(getCookie('bShowCPP'));
+  </script>
+  
+  <script>
+    window.$docsify = {
+      name: 'HexaSphere Library',
+	  loadSidebar: true,
+	  subMaxLevel: 3,
+	  executeScript: true,
+    }
+  </script>
+<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js" data-ga=""></script>
+<script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+<script src="js/prism-cpp.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+<script src="js/custom-class.min.js"></script>
+<script>
+var CustomMacros = 
+[
+	'UCLASS',
+	"UFUNCTION",
+	"UPROPERTY",
+	"GENERATED_BODY",
+	'check',
+	"TEXT",
+	"MYGAME_API",
+    "AddDynamic",
+    "USTRUCT"
+];
+var CustomTypes = 
+[
+	"ThisClass",
+	"int32",
+	"Super",
+    "FHexaSphereParameters",
+    "FHexaTile",
+    "TArray",
+    "FHexaSphereLib",
+    "FLinearColor",
+    "FHexaSphereNoise",
+    "FVector2D",
+    "FVector",
+    "FColor",
+    "FProcMeshTangent"
+];
+(function () {
+    Prism.languages['cpp']['class-name'].push(new RegExp(CustomTypes.join('|'))); 
+    Prism.languages['cpp']['ue-macro'].push(new RegExp(CustomMacros.join('|')));
+	Prism.plugins.customClass.add(({content, type, language}) => {
+		if (language == "cpp")
+		{	
+			if (CustomMacros.includes(content)) {
+				return 'ue-macro';
+			}
+			else if (CustomTypes.includes(content))
+			{
+				return 'ue-class';
+			}
+			
+			if (content.length > 1 && (content[0] == "F" || content[0] == "U"|| content[0] == "E" || content[0] == "T") && content[1] == content[1].toUpperCase())
+			{
+				return 'ue-class';
+			}
+		}
+        console.log(content);
+	});
+}());
+</script>
+
+<div class="progress" style="opacity: 0; width: 0%;"></div><script async="" src="https://www.google-analytics.com/analytics.js"></script></body></html>

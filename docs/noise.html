@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Noise | HexaSphere Library</title>
+    <link rel="icon" href="_media/favicon.webp">
+    <meta name="keywords" content="doc,docs,documentation,gitbook,HexaSphere,features,unreal,engine">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Documentation for the HexaSphere plugin available on the Unreal Engine Marketplace.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/dark.css">
+  <link rel="icon" href="favicon.png">
+  <meta property="og:title" content="HexaSphereLib Documentation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pandoa.github.io/HexaSphere/">
+  <style>
+	:root {--theme-color: #70a2ff }
+	html, body, .content {background: #121212}
+	.markdown-section a {color:#00ff80;font-weight:400;}
+	.sidebar {background-color: #242424}
+	textarea {display:none}
+	.sidebar a.section-link {font-size: 0.8em}
+	.app-sub-sidebar li > a.section-link {color:var(--theme-color)}
+	.app-sub-sidebar li {margin:0}
+	.markdown-section code {color: var(--theme-color);}
+	.markdown-section h3 { margin: 20px 0 0 }
+	.markdown-section p.tip {border-left: 4px solid var(--theme-color);color:#bbb;border-radius:6px}
+	.markdown-section p.tip:before {background: var(--theme-color)}
+	.markdown-section p.tip code {color: var(--theme-color); background-color: #333}
+	.markdown-section blockquote p {padding: 10px;color:white;}
+	.markdown-section blockquote {background: linear-gradient(0.21turn, #333, #222, #2a2a2a);
+		border-radius:4px;box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%)}
+	.markdown-section pre {border-radius:12px}
+	.markdown-section pre>code {color: #ddd;line-height:18px}
+	.markdown-section p.tip, .markdown-section tr:nth-child(2n) {background:#222}
+	.markdown-section p.warn {border: 1px solid #bF7F7F; color:white;border-radius:6px}
+	.markdown-section td, .markdown-section th {border:1px solid #555}
+	.token.class-name {color: #70d997}
+	.token.function {color: #efefbf}
+	.token.keyword {color: #569cd6}
+	.token.comment {color: #aaa}
+	.token.punctuation{color: #999}
+	.token.attr-name {color: #4993e7 }
+	.token.tag { color: #a8caff }
+	.token.string {color: magenta}
+	.sidebar ul>li>a {color: #888}
+	.token.punctuation.annotation {color: #666}
+	.sidebar-toggle {width: 300px; background: #555;transition: width 0.2s linear}
+	.sidebar-nav > ul > li > ul > li  {margin:0}
+	.token.attr-value, .token.control, .token.unit { color:magenta }
+	.token.directive { color: #ADC8D6 }
+	body.close .sidebar-toggle {width: 36px}
+	h4 {margin-block-end: 0.33em;margin-block-start: 0.66em}
+	h5 {margin-block-start: 1em;margin-block-end: 0}
+	.markdown-section h5{font-size:1.1rem}
+	thead{background: #333}
+	.anchor span {font-weight:600}
+	/* width */
+    ::-webkit-scrollbar {
+      width: 6px;
+	  height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #777;
+	  border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+	::marker {color: #999;font-weight:100}
+	@media screen and (max-width: 768px) {
+		.sidebar-toggle {width:auto}
+	}
+	
+	.cpp > pre,
+	img {
+		border-radius:16px;
+		box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+		border: 1px solid black;
+	}
+	
+	.switcher,
+	img, .sidebar {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+		user-drag: none;
+	}
+	
+	.bpcode {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.bpcode > button {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		
+		border: 1px solid white; 
+		background: rgba(18,18,18, 0.1);
+		color:white;
+		padding:10px 20px;
+		border-radius:5px;
+		cursor:pointer;
+		
+		width: 150px;
+		height: 40px;
+		position: relative;
+		top: -40px;		
+		
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out, top 0.2s ease-in-out, background 0.2s ease-in-out;
+	}
+	
+	.bpcode:hover > button {
+		opacity: 0.7;
+		top: -60px;
+	}
+	
+	.bpcode:hover > button:hover {
+		background: rgba(255, 255, 255, 0.05)
+	}
+	
+	.bpcode:hover > button:active {
+		background: rgba(255, 255, 255, 0.1)
+	}
+	
+	.adblock-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bF7F7F; 
+		color:white;
+		background: #281b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+		
+		display: none;
+	}
+	
+	.adblock-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.adblock-container > div {
+		color: #ddd;
+	}
+	
+	.adblock-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bF7F7F;
+		cursor: pointer;
+	}
+	
+	.code-switcher
+	{
+		background: #333;
+		padding: 20px 30px;
+		border-radius: 12px;
+		position: relative;
+		border-top-right-radius: 0;
+		
+		margin: 40px 0;
+	}
+	
+	.switcher 
+	{
+		position: absolute;
+		right:0;
+		top: -24px;
+	}
+	
+	.sw-bp,
+	.sw-cpp
+	{
+		padding: 5px 10px;
+		background: #333;
+		color: #bbb;
+		transition:background 0.2s ease-in-out;
+	}
+	
+	.sw-bp:hover,
+	.sw-cpp:hover
+	{
+		background:#222x;
+		cursor: pointer;
+	}
+	.sw-cpp
+	{
+		border-top-right-radius: 5px;
+		-border-bottom-right-radius: 5px;
+	}
+	
+	.sw-bp
+	{
+		border-top-left-radius: 5px;
+		-border-bottom-left-radius: 5px;
+	}
+	
+	.code-switcher .bp
+	{
+		margin: 20px 10px;
+	}
+	
+	.code-switcher.show-cpp-false .bp,
+	.code-switcher.show-cpp-true .cpp {
+		display: block;
+	}
+	
+	.code-switcher.show-cpp-false .cpp,
+	.code-switcher.show-cpp-true .bp {
+		display: none;
+	}
+	
+	.code-switcher.show-cpp-false .switcher .sw-cpp,
+	.code-switcher.show-cpp-true .switcher .sw-bp
+	{
+		background: #202020;
+	}
+	
+	.centered
+	{
+		text-align:center;
+		margin: 30px 0;
+	}
+	
+	.token.ue-macro
+	{
+		color: #ADA8E6;
+	}
+	
+	.token.ue-class
+	{
+		color:#70d997;
+	}
+	
+	.bp .bpcode {
+		margin-bottom:0;
+		position:relative;
+	}
+	
+	.bp .bpcode > button {
+		position: absolute;
+		bottom: 20px;
+		top: unset;
+	}
+	
+	input:focus-visible {
+		outline: none;
+	}
+	
+	table {
+		border: 1px solid #555;
+		border-collapse: collapse;
+		-border-radius: 14px;
+	}
+	
+	.markdown-section table {
+		width:fit-content;
+	}
+	
+	.markdown-section td:last-child, .markdown-section th:last-child
+	{
+		border-right:none;
+	}
+	
+	.markdown-section td:first-child, .markdown-section th:first-child
+	{
+		border-left:none;
+	}
+	
+	.markdown-section th, .markdown-section tr
+	{
+		border-top:none;
+	}
+	
+	.markdown-section tr:last-child, .markdown-section tr:last-child > td
+	{
+		border-bottom:none;
+	}
+	
+	.markdown-section td {
+		padding: 10px 15px;
+	}
+    
+    .work-container { display:none }
+    
+    .ue-button:hover {
+      filter: invert(0);
+    }
+    
+    .ue-button {
+      transition: 0.25s ease-in-out;
+       border: 1px solid white;
+      background: #eee;
+      border-radius: 4px;
+      color: black !important;
+      text-decoration:none;
+      padding: 20px 22px;
+      margin-right: 10px;
+      filter: invert(1);
+    }
+    
+    .ue-button img {
+      margin-left: 5px;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      vertical-align: middle;
+    }
+	
+	.work-container {
+		position: fixed;
+		z-index: 9999;
+		border: 1px solid #bFbF7F; 
+		color:white;
+		background: #282b19;
+		padding: 20px;
+		right: 10px;
+		top: 10px;
+	}
+	
+	.work-container > h1 {
+		font-size: 18px;
+		margin:0;
+		display:block;
+	}
+	
+	.work-container > div {
+		color: #ddd;
+	}
+	
+	.work-container > button {
+		position: absolute;
+		top:0;
+		right:0;
+		background: none;
+		border: none;
+		color: #bFbF7F;
+		cursor: pointer;
+	}
+    .sidebar .duration {
+        display: none
+    }
+    .duration {
+        background: #eee;
+        color: #222 !important;
+        padding: 6px 10px;
+        border: 1px solid black;
+        margin-left: 20px;;
+        border-radius: 10px;
+        font-size: 0.8rem;
+    }
+	@media (max-width: 600px)
+	{
+		.code-switcher
+		{
+			padding: 8px 10px;
+		}
+		
+		.markdown-section
+		{
+			max-width:95%
+		}
+	}
+	
+	
+  </style>
+</head>
+<body data-page="noise.md" class="ready sticky">
+  <main><button class="sidebar-toggle" aria-label="Menu"><div class="sidebar-toggle-button"><span></span><span></span><span></span></div></button><aside class="sidebar"><h1 class="app-name"><a class="app-name-link" data-nosearch="" href=".">HexaSphere Library</a></h1><div class="sidebar-nav"><ul><li><p>Quick Start</p><ul><li><a href="createplanet" title="Create a Planet">Create a Planet</a></li></ul></li><li><p>Sphere Generation</p><ul><li><a href="tiles" title="Tiles">Tiles</a></li><li class="active"><a href="noise" title="Noise">Noise</a><ul class="app-sub-sidebar"><li><a class="section-link" href="noise.html#built-in-noise" title="Built In Noise">Built In Noise</a></li><li><a class="section-link" href="noise.html#custom-deformation" title="Custom Deformation">Custom Deformation</a></li></ul></li><li><a href="mesh" title="Mesh">Mesh</a></li><li><a href="color" title="Color">Color</a></li><li><a href="pathfinding" title="Path Finding">Path Finding</a></li></ul></li><li><p>Support</p><ul><li><a href="troubleshoting" title="Troubleshoting">Troubleshoting</a></li><li><a href="support" title="Contact">Contact</a></li></ul></li></ul></div></aside><section class="content"><article class="markdown-section" id="main"><h1 id="applying-noise-on-tiles"><a href="noise.html#applying-noise-on-tiles" data-id="applying-noise-on-tiles" class="anchor"><span>Applying Noise on Tiles</span></a></h1><p>This section covers how to add noise to the tiles.</p><h2 id="built-in-noise"><a href="noise.html#built-in-noise" data-id="built-in-noise" class="anchor"><span>Built In Noise</span></a></h2><p>Noise can be applied to a list of tiles by using the <code>Apply Noise</code> method.</p><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// Sets up the noise applied to the tiles.</span>
+<span class="token class-name">FHexaSphereNoise</span> Noise<span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>bEnableNoise <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>Frequency <span class="token operator">=</span> <span class="token number">0.01f</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>Amplitude <span class="token operator">=</span> <span class="token number">0.01f</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>Octave <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>Persistence <span class="token operator">=</span> <span class="token number">0.5f</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>Seed <span class="token operator">=</span> <span class="token class-name">FMath</span><span class="token double-colon punctuation">::</span><span class="token function">Rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>UniformOffset <span class="token operator">=</span> <span class="token number">0.f</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>MinValue <span class="token operator">=</span> <span class="token number">0.f</span><span class="token punctuation">;</span>
+Noise<span class="token punctuation">.</span>MinOffset <span class="token operator">=</span> <span class="token number">0.f</span><span class="token punctuation">;</span>
+<span class="token comment">// Applies the noise to the tiles.</span>
+<span class="token class-name">FHexaSphereLib</span><span class="token double-colon punctuation">::</span><span class="token function">ApplyNoise</span><span class="token punctuation">(</span>Noise<span class="token punctuation">,</span> Tiles<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div>
+<div class="bp">
+<div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_1" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_1"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',MemberName="ApplyNoiseToTiles")
+   NodePosX=-192
+   NodePosY=-544
+   NodeGuid=C395B43E406FB171144392B9BBD4C99D
+   CustomProperties Pin (PinId=2FF6A8944E3E77C020F589B39D66A5C7,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D30032B8499F75010B19C6812786707B,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=659085AC4A4304C0F68202B3B8D54DEA,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=E006E1CA4C0FB817E611EEBAC000857E,PinName="Tiles",PinToolTip="Tiles\nArray of Hexa Tile Structures\n\nThe tiles we want to apply noise to.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=True,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=F2C3A1D443D28CDC59EA749EC3028199,PinName="Noise",PinToolTip="Noise\nHexa Sphere Noise Structure (by ref)\n\nThe noise to apply.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereNoise"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_MakeStruct_1 695A300A43AB32AFB55E2B938AA6E3DF,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=True,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_MakeStruct Name="K2Node_MakeStruct_1" ExportPath=/Script/BlueprintGraph.K2Node_MakeStruct'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_MakeStruct_1"'
+   bMadeAfterOverridePinRemoval=True
+   ShowPinForProperties(0)=(PropertyName="bEnableNoise",PropertyFriendlyName="Enable Noise",PropertyTooltip=NSLOCTEXT("", "AC2C770C490B82E96318DD8E138CE1B8", "If the noise is enabled."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(1)=(PropertyName="Frequency",PropertyFriendlyName="Frequency",PropertyTooltip=NSLOCTEXT("", "D14BD9904C24D7E4491AF9A1E803629A", "The frequency (speed) of the noise."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(2)=(PropertyName="Amplitude",PropertyFriendlyName="Amplitude",PropertyTooltip=NSLOCTEXT("", "C1A40C6B40AB99600F4F06ABAFD875DA", "The amplitude of the noise.\nThe resulting noise is in [-Amplitude, Amplitude]."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(3)=(PropertyName="Octave",PropertyFriendlyName="Octave",PropertyTooltip=NSLOCTEXT("", "3DFFEEEA4CC2B0651A3ADC9B0115E27D", "The number of octaves to apply to the noise.\nIf &lt;= 0, there is no noise."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(4)=(PropertyName="Persistence",PropertyFriendlyName="Persistence",PropertyTooltip=NSLOCTEXT("", "716D7B284C6ACD80365B64B4799C1FCB", "The persistence of the noise across octaves."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(5)=(PropertyName="Seed",PropertyFriendlyName="Seed",PropertyTooltip=NSLOCTEXT("", "5A163BE44D9A3F652B0DC2B0A027443A", "The seed for the noise. Used as an offset added in XYZ."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(6)=(PropertyName="UniformOffset",PropertyFriendlyName="Uniform Offset",PropertyTooltip=NSLOCTEXT("", "70DAE8C1489D5AC2E7CEE4BA26D6989E", "Abrbitrary offset applied to all tiles in percent."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(7)=(PropertyName="MinValue",PropertyFriendlyName="Min Value",PropertyTooltip=NSLOCTEXT("", "0FD184AF429E1EE81F7094BF671ECB97", "The minimal value of the noise. Noise is clamped to this value.\nCan be used to imitate water."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(8)=(PropertyName="MinOffset",PropertyFriendlyName="Min Offset",PropertyTooltip=NSLOCTEXT("", "A04C477B45AD97A0004E47AD6239F08F", "The minimal offset for the noise. Applied to a tile if it its noise\nvalue is greater than MinValue."),CategoryName="HexaSphere",bShowPin=True,bCanToggleVisibility=True)
+   StructType=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereNoise"'
+   NodePosX=-560
+   NodePosY=-704
+   AdvancedPinDisplay=Shown
+   NodeGuid=8F47C848475B5201A8EF57A14EE29562
+   CustomProperties Pin (PinId=695A300A43AB32AFB55E2B938AA6E3DF,PinName="HexaSphereNoise",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaSphereNoise"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_1 F2C3A1D443D28CDC59EA749EC3028199,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=678449084C80F246EFEB5DB45AA7ED94,PinName="bEnableNoise",PinFriendlyName=NSLOCTEXT("", "AB762C3D438A1C26EB255DA05F2A3E4F", "Enable Noise"),PinToolTip="Enable Noise\nBoolean\n\nIf the noise is enabled.",PinType.PinCategory="bool",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="true",AutogeneratedDefaultValue="False",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3C92AEE1465AE813EC2305827A299133,PinName="Frequency",PinFriendlyName=NSLOCTEXT("", "67C990E74F430A3F43717A8E785C15B1", "Frequency"),PinToolTip="Frequency\nFloat (single-precision)\n\nThe frequency (speed) of the noise.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.010000",AutogeneratedDefaultValue="1.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=893610544BE1F17283F1448E613D4974,PinName="Amplitude",PinFriendlyName=NSLOCTEXT("", "5770540045558B4A919F4193765AC8CA", "Amplitude"),PinToolTip="Amplitude\nFloat (single-precision)\n\nThe amplitude of the noise.\nThe resulting noise is in [-Amplitude, Amplitude].",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.020000",AutogeneratedDefaultValue="1.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BB951BC34AD7609133AC489F406B00AA,PinName="Octave",PinFriendlyName=NSLOCTEXT("", "ECEB005E4C960E45BFF235B31747184A", "Octave"),PinToolTip="Octave\nInteger\n\nThe number of octaves to apply to the noise.\nIf &lt;= 0, there is no noise.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="1",AutogeneratedDefaultValue="1",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=0122E3C04C2F1A16307D1198AB2FE980,PinName="Persistence",PinFriendlyName=NSLOCTEXT("", "4D099EE640F3D95B2958D581B2C690B7", "Persistence"),PinToolTip="Persistence\nFloat (single-precision)\n\nThe persistence of the noise across octaves.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="1.000000",AutogeneratedDefaultValue="1.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7443AEA3415E3F8C793ED9BB22300DC2,PinName="Seed",PinFriendlyName=NSLOCTEXT("", "1445AE92429900C4C8C08E92982D8998", "Seed"),PinToolTip="Seed\nInteger\n\nThe seed for the noise. Used as an offset added in XYZ.",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=0BDCC0BA42551CB1F7E50F86099FF02C,PinName="UniformOffset",PinFriendlyName=NSLOCTEXT("", "6ADA2ED4441F1ADB5070C6B46FFC12FE", "Uniform Offset"),PinToolTip="Uniform Offset\nFloat (single-precision)\n\nAbrbitrary offset applied to all tiles in percent.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.000000",AutogeneratedDefaultValue="0.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=2991FC2A4F38D6A0325F25A5AF52CD3F,PinName="MinValue",PinFriendlyName=NSLOCTEXT("", "D1C2A5E34082A8F3C19C7DA089E1427C", "Min Value"),PinToolTip="Min Value\nFloat (single-precision)\n\nThe minimal value of the noise. Noise is clamped to this value.\nCan be used to imitate water.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.000000",AutogeneratedDefaultValue="0.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=9862057E4548DA5D47BD7681D17D7A6E,PinName="MinOffset",PinFriendlyName=NSLOCTEXT("", "24E0E8A74FD112338BA152935D3BC5B2", "Min Offset"),PinToolTip="Min Offset\nFloat (single-precision)\n\nThe minimal offset for the noise. Applied to a tile if it its noise\nvalue is greater than MinValue.",PinType.PinCategory="real",PinType.PinSubCategory="float",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.000000",AutogeneratedDefaultValue="0.000000",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/ApplyNoise.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<p>The resulting noise vector can be read and modified in a tile's <code>Offset</code> attribute.</p><h2 id="custom-deformation"><a href="noise.html#custom-deformation" data-id="custom-deformation" class="anchor"><span>Custom Deformation</span></a></h2><p>Custom deformation can be applied to a tile.</p><div class="code-switcher show-cpp-false">
+<div class="switcher">
+<span class="sw-bp" onclick="switchBp()">Blueprints</span><span class="sw-cpp" onclick="switchCpp()">C++</span>
+</div>
+<div class="cpp">
+<pre v-pre="" data-lang="cpp"><code class="lang-cpp"><span class="token comment">// Extrudes a tile by 10% of the sphere width.</span>
+Tile<span class="token punctuation">.</span>Offset <span class="token operator">=</span> Tile<span class="token punctuation">.</span>CenterPoint <span class="token operator">*</span> <span class="token number">0.1f</span><span class="token punctuation">;</span> </code></pre></div>
+<div class="bp">
+<p>The following code shows how to set the offset of a specific tile to <code>10%</code> of the planet radius.</p><div class="bpcode">
+<textarea readonly="">Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_4" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_4"'
+   VariableReference=(MemberName="Hexa Sphere",MemberGuid=FD75A70E45BA20382AA5B9A8C345B35C,bSelfContext=True)
+   NodePosX=-1072
+   NodePosY=-1056
+   NodeGuid=858A2FB24AECE2DC5AF327802AAE0EF6
+   CustomProperties Pin (PinId=4CB40BC74EEBDE2A50FBB693032D17AA,PinName="Hexa Sphere",Direction="EGPD_Output",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_5 BC28378A4A25394820B1C6A94E63FDB6,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=279CA2CD4DEF1AFA818AEE9C58A57A5A,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/Engine.BlueprintGeneratedClass'"/Game/QuickStart/MyPlanet.MyPlanet_C"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_VariableGet Name="K2Node_VariableGet_5" ExportPath=/Script/BlueprintGraph.K2Node_VariableGet'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_VariableGet_5"'
+   VariableReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',MemberName="Tiles")
+   SelfContextInfo=NotSelfContext
+   NodePosX=-1072
+   NodePosY=-1104
+   NodeGuid=766575FD49D30FB5ABD2BCBC2EB430D3
+   CustomProperties Pin (PinId=A8E823544B24D99995364FBBF6BFA112,PinName="Tiles",PinFriendlyName=NSLOCTEXT("", "87B8A0974A6A1652CBC0CD9FE879352A", "Tiles"),Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_GetArrayItem_0 4C73817440179895AE008FA1FE2987FC,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=BC28378A4A25394820B1C6A94E63FDB6,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphere"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_4 4CB40BC74EEBDE2A50FBB693032D17AA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_GetArrayItem Name="K2Node_GetArrayItem_0" ExportPath=/Script/BlueprintGraph.K2Node_GetArrayItem'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_GetArrayItem_0"'
+   NodePosX=-1072
+   NodePosY=-1196
+   NodeGuid=AA9EC70841D7CD4FF90B32B68CD83B22
+   CustomProperties Pin (PinId=4C73817440179895AE008FA1FE2987FC,PinName="Array",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_VariableGet_5 A8E823544B24D99995364FBBF6BFA112,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=D024BE6A4B906CF908D056B4FEA34FB9,PinName="Dimension 1",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0",AutogeneratedDefaultValue="0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5DB5198C45982226E50EC8AEBC60096B,PinName="Output",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_2 7BCCF6564052684ECA9A83BC27E87D9C,K2Node_BreakStruct_1 F4D1825746583CC26AC45EAC593678FA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_2" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_2"'
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',MemberName="SetOffset")
+   NodePosX=-448
+   NodePosY=-1232
+   NodeGuid=B93DEA9A454C14570DD57A97DCC5039D
+   CustomProperties Pin (PinId=DAC64BCA43FB7528CB4816B1AACCFF2E,PinName="execute",PinToolTip="\nExec",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=C722726645CD09D8DE318AAD69A37976,PinName="then",PinToolTip="\nExec",Direction="EGPD_Output",PinType.PinCategory="exec",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=8845CC184FB4038699A4C7958D095F53,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nHexa Sphere Blueprint Lib Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/HexaSphereLib.HexaSphereBlueprintLib"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/HexaSphereLib.Default__HexaSphereBlueprintLib",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=7BCCF6564052684ECA9A83BC27E87D9C,PinName="Tile",PinToolTip="Tile\nHexa Tile Structure (by ref)\n\nThe target tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_GetArrayItem_0 5DB5198C45982226E50EC8AEBC60096B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=5123E3F34EA4E3DFBB5A54AD016A48DE,PinName="Offset",PinToolTip="Offset\nVector\n\nThe new offset for the tile.",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0, 0, 0",AutogeneratedDefaultValue="0, 0, 0",LinkedTo=(K2Node_PromotableOperator_3 6E86146840FB23517FB361A580683A41,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_BreakStruct Name="K2Node_BreakStruct_1" ExportPath=/Script/BlueprintGraph.K2Node_BreakStruct'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_BreakStruct_1"'
+   bMadeAfterOverridePinRemoval=True
+   ShowPinForProperties(0)=(PropertyName="CenterPoint",PropertyFriendlyName="Center Point",PropertyTooltip=NSLOCTEXT("", "5B7C0B1E410BD6240003E1854B88D81E", "The center point of the tile."),CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(1)=(PropertyName="Boundaries",PropertyFriendlyName="Boundaries",PropertyTooltip=NSLOCTEXT("", "C04747054903B857B4FBD7994F979D9A", "The boundaries of the tile. Each element is a vertex of the (hexa/penta)gone."),CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(2)=(PropertyName="Offset",PropertyFriendlyName="Offset",PropertyTooltip=NSLOCTEXT("", "4ABFB85A4D3852C3192D39AF5F83900D", "The offset of the tile."),CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(3)=(PropertyName="Color",PropertyFriendlyName="Color",PropertyTooltip=NSLOCTEXT("", "288EB4AD4224B7F24831FEB3781D0E50", "The color of the tile. Passed as Vertex color for the vertices composing\nthis tile."),CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   ShowPinForProperties(4)=(PropertyName="Neighbors",PropertyFriendlyName="Neighbors",PropertyTooltip=NSLOCTEXT("", "77E1DA374C782F7FE91EE6A939C48F4A", "The index of the neighboring tiles."),CategoryName="Tile",bShowPin=True,bCanToggleVisibility=True)
+   StructType=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"'
+   NodePosX=-848
+   NodePosY=-1152
+   AdvancedPinDisplay=Hidden
+   NodeGuid=14D8FA6E4D5589EDC29C329A754A90AC
+   CustomProperties Pin (PinId=F4D1825746583CC26AC45EAC593678FA,PinName="HexaTile",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/HexaSphereLib.HexaTile"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=True,PinType.bIsConst=True,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_GetArrayItem_0 5DB5198C45982226E50EC8AEBC60096B,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=4C20EA4C477759B21FDDEAA8D458FDAA,PinName="CenterPoint",PinFriendlyName=NSLOCTEXT("", "88E1D3BE4AB2A1F5F1BED992F6272001", "Center Point"),PinToolTip="Center Point\nVector\n\nThe center point of the tile.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_PromotableOperator_3 A20076BE4BD66283909A23A36E9308B0,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=387DA1DA47B8193B3A060CAC083494C7,PinName="Boundaries",PinFriendlyName=NSLOCTEXT("", "CE08AF1A4A00E89322EE8587649B6B12", "Boundaries"),PinToolTip="Boundaries\nArray of Vectors\n\nThe boundaries of the tile. Each element is a vertex of the (hexa/penta)gone.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=1F9AAD3B44C25A673C94B5939A4EB4E1,PinName="Offset",PinFriendlyName=NSLOCTEXT("", "E395C93040409B43BE8C15A3F57678E8", "Offset"),PinToolTip="Offset\nVector\n\nThe offset of the tile.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=99B7DEF04D2FC7EB2E0189B5C1B87483,PinName="Color",PinFriendlyName=NSLOCTEXT("", "E4752292416DEFC851D62887A4E05456", "Color"),PinToolTip="Color\nLinear Color Structure\n\nThe color of the tile. Passed as Vertex color for the vertices composing\nthis tile.",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.LinearColor"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=0116D8BB4FC7A48024E2EC930658391B,PinName="Neighbors",PinFriendlyName=NSLOCTEXT("", "8B1BF364438479CE9A358D9FD98D3851", "Neighbors"),PinToolTip="Neighbors\nArray of Integers\n\nThe index of the neighboring tiles.",Direction="EGPD_Output",PinType.PinCategory="int",PinType.PinSubCategory="",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=Array,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=True,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_CallFunction Name="K2Node_CallFunction_3" ExportPath=/Script/BlueprintGraph.K2Node_CallFunction'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_CallFunction_3"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetSystemLibrary"',MemberName="MakeLiteralDouble")
+   NodePosX=-864
+   NodePosY=-1024
+   NodeGuid=430F13614BDAA4C9CAE3AE85FD63DDF3
+   CustomProperties Pin (PinId=72DA25174DA831F96FCD7DBAC1FB31AA,PinName="self",PinFriendlyName=NSLOCTEXT("K2Node", "Target", "Target"),PinToolTip="Target\nKismet System Library Object Reference",PinType.PinCategory="object",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.Class'"/Script/Engine.KismetSystemLibrary"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultObject="/Script/Engine.Default__KismetSystemLibrary",PersistentGuid=00000000000000000000000000000000,bHidden=True,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=FCC7241C4A211280411F24AF2A53756B,PinName="Value",PinToolTip="Value\nFloat (double-precision)\n\nvalue to set the float (double-precision) to",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.100000",AutogeneratedDefaultValue="0.0",PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=3710FCFA40C94C2B3818F1AE2220A899,PinName="ReturnValue",PinToolTip="Return Value\nFloat (double-precision)\n\nThe literal float (double-precision)",Direction="EGPD_Output",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,DefaultValue="0.0",AutogeneratedDefaultValue="0.0",LinkedTo=(K2Node_PromotableOperator_3 63AFFE31490AD5AB3902C6BD5B58DCF0,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+Begin Object Class=/Script/BlueprintGraph.K2Node_PromotableOperator Name="K2Node_PromotableOperator_3" ExportPath=/Script/BlueprintGraph.K2Node_PromotableOperator'"/Game/QuickStart/MyPlanet.MyPlanet:EventGraph.K2Node_PromotableOperator_3"'
+   bIsPureFunc=True
+   FunctionReference=(MemberParent=/Script/CoreUObject.Class'"/Script/Engine.KismetMathLibrary"',MemberName="Multiply_VectorVector")
+   NodePosX=-608
+   NodePosY=-1120
+   NodeGuid=262A39CB4F9547EBF934CEA68AB2EF0F
+   CustomProperties Pin (PinId=A20076BE4BD66283909A23A36E9308B0,PinName="A",PinToolTip="A\nVector",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_BreakStruct_1 4C20EA4C477759B21FDDEAA8D458FDAA,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=63AFFE31490AD5AB3902C6BD5B58DCF0,PinName="B",PinToolTip="B\nFloat (double-precision)",PinType.PinCategory="real",PinType.PinSubCategory="double",PinType.PinSubCategoryObject=None,PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_3 3710FCFA40C94C2B3818F1AE2220A899,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+   CustomProperties Pin (PinId=6E86146840FB23517FB361A580683A41,PinName="ReturnValue",PinToolTip="Return Value\nVector\n\nElement-wise Vector multiplication (Result = {A.x*B.x, A.y*B.y, A.z*B.z})",Direction="EGPD_Output",PinType.PinCategory="struct",PinType.PinSubCategory="",PinType.PinSubCategoryObject=/Script/CoreUObject.ScriptStruct'"/Script/CoreUObject.Vector"',PinType.PinSubCategoryMemberReference=(),PinType.PinValueType=(),PinType.ContainerType=None,PinType.bIsReference=False,PinType.bIsConst=False,PinType.bIsWeakPointer=False,PinType.bIsUObjectWrapper=False,PinType.bSerializeAsSinglePrecisionFloat=False,LinkedTo=(K2Node_CallFunction_2 5123E3F34EA4E3DFBB5A54AD016A48DE,),PersistentGuid=00000000000000000000000000000000,bHidden=False,bNotConnectable=False,bDefaultValueIsReadOnly=False,bDefaultValueIsIgnored=False,bAdvancedView=False,bOrphanedPin=False,)
+End Object
+</textarea>
+<img src="_images/SetTileOffset.png">
+<button onclick="copyBlueprintCode(this)">Copy Code</button>
+</div>
+</div>
+</div>
+<script>
+setTimeout(() => {
+    bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+    switchCode();
+}, 0);
+</script>
+</article></section></main>
+  
+  <script>
+	function copyBlueprintCode(button){
+		button.innerHTML = "Copied!";
+		setTimeout(() => {button.innerHTML = "Copy Code"}, 5000);
+		var c=button.parentNode.children[0];
+		c.style.display="block";
+		c.select();
+		document.execCommand("copy");
+		c.style.display="none";
+	}</script>
+  <script>
+	var bShowCPP = false;
+	function switchCode()
+	{
+		bShowCPP = !bShowCPP;
+		var elems = document.getElementsByClassName('code-switcher');
+		
+		for (var i = 0; i < elems.length; ++i)
+		{
+			elems[i].classList.remove('show-cpp-' + !bShowCPP);
+			elems[i].classList.add('show-cpp-' + bShowCPP);
+		}
+		
+		setCookie('bShowCPP', bShowCPP, 7);
+	}
+	function switchCpp()
+	{
+		bShowCPP = false;
+		switchCode();
+	}
+	function switchBp()
+	{
+		bShowCPP = true;
+		switchCode();
+	}
+	function setCookie(name,value,days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days*24*60*60*1000));
+			expires = "; expires=" + date.toUTCString();
+		}
+		document.cookie = name + "=" + value + expires + "; path=/";
+	}
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i<ca.length;i++){
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ)==0)return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+	
+	function changeSelectedCode()
+	{
+		setTimeout(() => {
+			bShowCPP = !JSON.parse(getCookie('bShowCPP'));
+			switchCode();
+		}, 0);
+	}
+	
+	bShowCPP = JSON.parse(getCookie('bShowCPP'));
+  </script>
+  
+  <script>
+    window.$docsify = {
+      name: 'HexaSphere Library',
+	  loadSidebar: true,
+	  subMaxLevel: 3,
+	  executeScript: true,
+    }
+  </script>
+<script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js" data-ga=""></script>
+<script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+<script src="js/prism-cpp.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-ini.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+<script src="js/custom-class.min.js"></script>
+<script>
+var CustomMacros = 
+[
+	'UCLASS',
+	"UFUNCTION",
+	"UPROPERTY",
+	"GENERATED_BODY",
+	'check',
+	"TEXT",
+	"MYGAME_API",
+    "AddDynamic",
+    "USTRUCT"
+];
+var CustomTypes = 
+[
+	"ThisClass",
+	"int32",
+	"Super",
+    "FHexaSphereParameters",
+    "FHexaTile",
+    "TArray",
+    "FHexaSphereLib",
+    "FLinearColor",
+    "FHexaSphereNoise",
+    "FVector2D",
+    "FVector",
+    "FColor",
+    "FProcMeshTangent"
+];
+(function () {
+    Prism.languages['cpp']['class-name'].push(new RegExp(CustomTypes.join('|'))); 
+    Prism.languages['cpp']['ue-macro'].push(new RegExp(CustomMacros.join('|')));
+	Prism.plugins.customClass.add(({content, type, language}) => {
+		if (language == "cpp")
+		{	
+			if (CustomMacros.includes(content)) {
+				return 'ue-macro';
+			}
+			else if (CustomTypes.includes(content))
+			{
+				return 'ue-class';
+			}
+			
+			if (content.length > 1 && (content[0] == "F" || content[0] == "U"|| content[0] == "E" || content[0] == "T") && content[1] == content[1].toUpperCase())
+			{
+				return 'ue-class';
+			}
+		}
+        console.log(content);
+	});
+}());
+</script>
+
+<div class="progress" style="opacity: 0; width: 0%;"></div><script async="" src="https://www.google-analytics.com/analytics.js"></script></body></html>
