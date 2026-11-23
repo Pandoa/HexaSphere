@@ -9,7 +9,7 @@ After this tutorial, you will have the following planet in your scene.
 
 <div class="centered">
 
-<img alt="Simple Planet" src="./_images/QuickStartResult1.png" style="max-width: 512px"/>
+<img alt="Simple Planet example created with the plugin" src="./_images/QuickStartResult1.png" style="max-width: 512px; height: auto;" width="1080" height="1080"/>
 </div>
 
 ## Tutorial
@@ -22,7 +22,7 @@ In the Unreal Engine Editor, right click in the content browser and select `Blue
 
 <div class="centered">
 
-![Create a Blueprint class](./_images/CreateBlueprint.png)
+<img alt="Create a Blueprint class" src="./_images/CreateBlueprint.png" width="807" height="814"/>
 </div>
 
 In the window, select `Actor` to create the Actor Blueprint.

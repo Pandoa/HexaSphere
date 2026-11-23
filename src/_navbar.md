@@ -1,2 +1,4 @@
-- Translations
-  - [:uk: English](/)
+- [Get Started](/createplanet)
+- [Support](/support)
+- [Download Plugin](https://www.fab.com/listings/2ca27135-d6ef-474e-93b9-79b17804d522 ':target=_blank')
+- [Discord](https://discord.gg/9dzAucgAS9 ':target=_blank')
